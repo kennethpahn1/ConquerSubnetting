@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">INFS1609 Tutorial Application</string>
+    <string name="title_activity_module_content_dp">moduleContentDp</string>
+    <string name="title_activity_content_display">contentDisplay</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module1" type="string">Introduction to Programming</string>
+    <string name="module2">Elementary Programming 1</string>
+    <string name="module3">Elementary Programming 2</string>
+    <string name="module4">Selection</string>
+    <string name="module5">Loops</string>
+    <string name="module6">Methods</string>
+    <string name="module7">Single and Multidimensional Arrays</string>
+    <string name="module8">Objects and Classes</string>
+    <string name="module9">Thinking in Objects Part 1</string>
+    <string name="module10">Thinking in Objects Part 2</string>
+    <string name="module11">Inheritance</string>
+    <string name="module12">Polymorphism</string>
+</resources>
