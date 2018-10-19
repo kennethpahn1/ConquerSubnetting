@@ -21,4 +21,18 @@ public class mcqQuizContent {
         this.c = c;
         this.d = d;
     }
+    public String getQuestion(){
+        return this.question;
+    }
+    public String[] getAnswers(){
+        String[] answerArray = new String[4];
+        answerArray[0] = this.a;
+        answerArray[1] = this.b;
+        answerArray[2] = this.c;
+        answerArray[3] = this.d;
+        return answerArray;
+    }
+    public int getSolution(){
+        return this.answer;
+    }
 }

@@ -16,9 +16,8 @@ public class MainActivity extends AppCompatActivity {
     // declare all the UI elements
     private ListView moduleListView;
     // these help populate all the content
-    public String[] moduleListArray = new String[12];
-    public modules[] moduleArray = new modules[12];
-    public String[] moduleContentArray = new String[4];
+    private String[] moduleListArray = new String[12];
+    private modules[] moduleArray = new modules[12];
     public void populateModules(){
         // populate the module directory
         modules module1 = new modules(1, getResources().getString(R.string.module1), "Helps you write a simple Java program, write output to a console, explain the basic syntax of a Java program, and create/compile/run Java programs.");
@@ -51,52 +50,12 @@ public class MainActivity extends AppCompatActivity {
             moduleListArray[i] = moduleArray[i].getName();
         }
     }
-
-    public void populateModuleContent(){
-        moduleContent[] module1ContentArray = new moduleContent[4];
-        // populate module content
-        moduleContent moduleContent1 = new moduleContent(1, 1, 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec varius nisl. Maecenas et hendrerit nibh, vel ullamcorper dui. Curabitur finibus " +
-                "tortor pellentesque felis tincidunt, vel elementum sapien pretium. Sed aliquam tellus tortor, sit amet luctus odio sodales id. Phasellus nec ligula nec ipsum efficitur rhoncus a non arcu. Praesent fermentum sed sapien et aliquet. " +
-                "Vivamus ut elit nibh. Pellentesque mauris elit, pretium vitae massa quis, pharetra gravida lacus. Cras sed metus ut nibh hendrerit tristique sit amet ac sem. Nullam sollicitudin, urna sit amet laoreet accumsan, lacus ex imperdiet est, at" +
-                " ullamcorper mauris tortor et urna. Aenean pretium eros laoreet tortor ultrices, vel ornare mi semper.");
-        moduleContent moduleContent2 = new moduleContent(2, 1, 2, "Cras vehicula molestie semper. Ut aliquet ac ante ut faucibus. Quisque maximus malesuada erat non malesuada. Duis non arcu eget nisl condimentum bibendum. Proin at " +
-                "convallis lacus. Nulla sed risus eu leo suscipit suscipit id at sem. Curabitur finibus sapien id vestibulum egestas. Maecenas sagittis interdum hendrerit. Sed pretium nisi nibh, vel suscipit magna vestibulum vel. Aenean ultricies molestie luctus. ");
-        moduleContent moduleContent3 = new moduleContent(3, 1, 3, "Fusce ut turpis tortor. Fusce nisl arcu, laoreet sed rhoncus vel, consequat sed arcu. Fusce erat diam, porttitor vitae sem quis, ultrices luctus orci. Donec euismod eu metus vel " +
-                "ornare. Aenean diam nibh, ultricies quis pellentesque id, hendrerit imperdiet mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam non accumsan est. In ultricies nibh non nibh consequat lacinia. In " +
-                "justo ipsum, vulputate et est quis, suscipit pharetra nibh. Etiam sapien purus, molestie vitae mattis id, porttitor eu lectus. Nullam quam ante, dictum vel purus at, venenatis faucibus nisi. Duis eget ultricies felis. ");
-        moduleContent moduleContent4 = new moduleContent(4, 1, 4, "Suspendisse potenti. Pellentesque lorem nisl, varius non vulputate ac, scelerisque sit amet leo. Vivamus consequat convallis est sed sollicitudin. Donec dui dui, aliquam sed neque" +
-                " malesuada, porta volutpat enim. Aliquam sed fermentum erat, vitae ullamcorper elit. Sed et auctor nisi. Quisque a erat non sem euismod commodo. Quisque pharetra dictum orci, id pulvinar turpis mattis sit amet. Nulla vel iaculis nibh. Pellentesque ultricies eget" +
-                " justo nec mattis. Maecenas mattis interdum pretium. ");
-        // index them
-        module1ContentArray[0] = moduleContent1;
-        module1ContentArray[1] = moduleContent2;
-        module1ContentArray[2] = moduleContent3;
-        module1ContentArray[3] = moduleContent4;
-        // convert to string
-        for (int i = 0; i < 4; i++){
-            moduleContentArray[i] = module1ContentArray[i].getContent();
-        }
-    }
-    public void populateMultimediaContent(){
-
-    }
-    public void populateMcqQuizContent(){
-
-    }
-    public void populateTfQuizContent(){
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // populate all the data required
         populateModules();
-        populateModuleContent();
-        populateMultimediaContent();
-        populateMcqQuizContent();
-        populateTfQuizContent();
         // link to UI
         moduleListView = (ListView) findViewById(R.id.moduleList);
         // create Array List for the initial UI
@@ -114,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 a.putExtra("moduleNo", position);
                 a.putExtra("moduleName", moduleArray[position].getName());
                 a.putExtra("moduleDesc", moduleArray[position].getDescription());
-                if (position == 0){
-                    a.putExtra("moduleContents", moduleContentArray);
-                }
                 startActivity(a);
             }
         });

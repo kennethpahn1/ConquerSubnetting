@@ -26,7 +26,8 @@
             android:label="@string/title_activity_content_display"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".test" />
-        <activity android:name=".contentDisp"></activity>
+        <activity android:name=".contentDisp" />
+        <activity android:name=".mcqQuizDisp"></activity>
     </application>
 
 </manifest>

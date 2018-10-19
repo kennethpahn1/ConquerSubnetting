@@ -12,17 +12,16 @@ public class moduleDetail extends AppCompatActivity {
     private TextView moduleNameTxt;
     private TextView moduleDescTxt;
     private Button startBtn;
-    public String[] moduleContents;
+    private int moduleNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_detail);
         // get intent and information
         Bundle infoPassed = getIntent().getExtras();
-        int moduleNo = infoPassed.getInt("moduleNo");
+        moduleNo = infoPassed.getInt("moduleNo");
         String moduleName = infoPassed.getString("moduleName");
         String moduleDesc = infoPassed.getString("moduleDesc");
-        moduleContents = infoPassed.getStringArray("moduleContents");
         // load into the UI
         moduleNameTxt = (TextView) findViewById(R.id.moduleNameTxt);
         moduleNameTxt.setText(moduleNo + ": " + moduleName);
@@ -35,8 +34,8 @@ public class moduleDetail extends AppCompatActivity {
               @Override
                public void onClick(View v) {
                   Intent a = new Intent(moduleDetail.this, contentDisp.class);
+                  a.putExtra("moduleNo", moduleNo);
                   a.putExtra("moduleName", moduleNameTxt.getText().toString());
-                  a.putExtra("moduleContents", moduleContents);
                   startActivity(a);
                }
             }
