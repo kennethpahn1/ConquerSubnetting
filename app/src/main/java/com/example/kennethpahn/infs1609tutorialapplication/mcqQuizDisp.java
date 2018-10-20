@@ -65,7 +65,7 @@ public class mcqQuizDisp extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if (aOption.isChecked() == true){
-                    if (solution == 1){
+                    if (solution == 0){
                         resultTxt.setText("Result: Correct!");
                         counter++;
                         try {
@@ -76,6 +76,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
+                            aOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
@@ -87,7 +88,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                     }
                 }
                 if (bOption.isChecked() == true){
-                    if (solution == 2){
+                    if (solution == 1){
                         resultTxt.setText("Result: Correct!");
                         counter++;
                         try {
@@ -98,6 +99,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
+                            bOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
@@ -109,7 +111,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                     }
                 }
                 if (cOption.isChecked() == true){
-                    if (solution == 3){
+                    if (solution == 2){
                         resultTxt.setText("Result: Correct!");
                         counter++;
                         try {
@@ -120,6 +122,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
+                            cOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
@@ -131,7 +134,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                     }
                 }
                 if (dOption.isChecked() == true){
-                    if (solution == 4){
+                    if (solution == 3){
                         resultTxt.setText("Result: Correct!");
                         counter++;
                         try {
@@ -142,6 +145,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
+                            dOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);

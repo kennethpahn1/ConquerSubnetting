@@ -61,13 +61,15 @@ public class tfQuizDisp extends AppCompatActivity {
                         a.putExtra("moduleNo", moduleNo);
                         startActivity(a);
                     }
+                } else {
+                    resultTxt.setText("Result: Incorrect. Try again!");
                 }
             }
         });
         falseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tfQuiz[counter].getSolution() == 1){
+                if (tfQuiz[counter].getSolution() == 0){
                     resultTxt.setText("Result: Correct!");
                     counter++;
                     try{
@@ -78,6 +80,8 @@ public class tfQuizDisp extends AppCompatActivity {
                         a.putExtra("moduleNo", moduleNo);
                         startActivity(a);
                     }
+                } else{
+                    resultTxt.setText("Result: Incorrect. Try again!");
                 }
             }
         });
