@@ -20,9 +20,9 @@ public class mcqQuizDisp extends AppCompatActivity {
     private TextView resultTxt;
     private int solution;
     private int moduleNo;
-    private mcqQuizContent[] mcqQuiz = new mcqQuizContent[10];
     private int counter = 0;
-    public void populateMcqQuiz(int moduleNo){
+    private mcqQuizContent[] populateMcqQuiz(int moduleNo){
+        mcqQuizContent[] mcqQuiz = new mcqQuizContent[10];
         if (moduleNo == 0){
             mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
             mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
@@ -35,6 +35,7 @@ public class mcqQuizDisp extends AppCompatActivity {
             mcqQuiz[8] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
             mcqQuiz[9] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
         }
+        return mcqQuiz;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
         // populate details based on that.
-        populateMcqQuiz(moduleNo);
+        final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
         questionTxt.setText(mcqQuiz[counter].getQuestion());
         String[] answers = mcqQuiz[counter].getAnswers();
         solution = mcqQuiz[counter].getSolution();

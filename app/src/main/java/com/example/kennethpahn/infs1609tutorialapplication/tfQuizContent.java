@@ -13,4 +13,10 @@ public class tfQuizContent {
         this.question = question;
         this.answer = answer;
     }
+    public String getQuestion(){
+        return this.question;
+    }
+    public int getSolution(){
+        return this.answer;
+    }
 }

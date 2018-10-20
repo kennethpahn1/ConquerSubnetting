@@ -13,9 +13,9 @@ public class contentDisp extends AppCompatActivity {
     private TextView moduleNameTxt;
     private TextView moduleContentTxt;
     private int i = 0;
-    private String[] moduleContentArray = new String[4];
     private int moduleNo;
-    public void populateModuleContent(int moduleNo){
+    private String[] populateModuleContent(int moduleNo){
+        String[] moduleContentArray = new String[4];
         // populate module content
         if (moduleNo == 0){
             moduleContent moduleContent1 = new moduleContent(1, 1, 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec varius nisl. Maecenas et hendrerit nibh, vel ullamcorper dui. Curabitur finibus " +
@@ -36,6 +36,7 @@ public class contentDisp extends AppCompatActivity {
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
         }
+        return moduleContentArray;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class contentDisp extends AppCompatActivity {
         moduleNameTxt = (TextView) findViewById(R.id.moduleNameTxt);
         moduleContentTxt = (TextView) findViewById(R.id.moduleContentTxt);
         // figure out what module number we want to use...
-        populateModuleContent(moduleNo);
+        final String[] moduleContentArray = populateModuleContent(moduleNo);
         // load data
         moduleNameTxt.setText(moduleName);
         moduleContentTxt.setText(moduleContentArray[i]);
