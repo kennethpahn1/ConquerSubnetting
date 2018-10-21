@@ -13,8 +13,14 @@ public class tfQuizDisp extends AppCompatActivity {
     private Button trueBtn;
     private Button falseBtn;
     private TextView resultTxt;
+    // this is just to hold information for the rest of the program
     private int moduleNo;
     private int counter;
+    private boolean add = true; // so this prevents retried questions from being taken as correct.
+    private boolean next = false;
+    // this is to hold the marks
+    private int mark;
+    private int total;
     private tfQuizContent[] populateTfQuiz(int moduleNo){
         tfQuizContent[] tfQuiz = new tfQuizContent[10];
         if (moduleNo == 0){
@@ -52,17 +58,31 @@ public class tfQuizDisp extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     if (tfQuiz[counter].getSolution() == 1){
-                        resultTxt.setText("Result: Correct!");
+                        if (add == true){
+                            mark++;
+                            total++;
+                        }
                         counter++;
                         questionTxt.setText(tfQuiz[counter].getQuestion());
+                        add = true;
+                        resultTxt.setText("Result: Correct!\n\n Mark: " + mark + "/" + total);
                     } else {
-                        resultTxt.setText("Result: Incorrect. Try again!");
+                        if (add == true){
+                            total++;
+                        }
+                        add = false;
+                        resultTxt.setText("Result: Incorrect. Try again!\n\n Mark: " + mark + "/" + total);
                     }
                 } catch (Exception e){
                     e.printStackTrace();
-                    Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
-                    a.putExtra("moduleNo", moduleNo);
-                    startActivity(a);
+                    if (next == false){
+                        resultTxt.setText("Mark: " + mark + "/" + total + "\n\n Click Next when you are ready to learn more.");
+                        next = true;
+                    } else if (next == true){
+                        Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
+                        a.putExtra("moduleNo", moduleNo);
+                        startActivity(a);
+                    }
                 }
             }
         });
@@ -71,17 +91,32 @@ public class tfQuizDisp extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     if (tfQuiz[counter].getSolution() == 0){
-                        resultTxt.setText("Result: Correct!");
                         counter++;
+                        if (add == true){
+                            mark++;
+                            total++;
+                        }
                         questionTxt.setText(tfQuiz[counter].getQuestion());
+                        add = true;
+                        resultTxt.setText("Result: Correct!\n\n Mark: " + mark + "/" + total);
                     } else {
-                        resultTxt.setText("Result: Incorrect. Try again!");
+                        if (add == true){
+                            total++;
+                        }
+                        add = false;
+                        resultTxt.setText("Result: Incorrect. Try again!\n\n Mark: " + mark + "/" + total);
                     }
                 } catch (Exception e){
                     e.printStackTrace();
-                    Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
-                    a.putExtra("moduleNo", moduleNo);
-                    startActivity(a);
+                    if (next == false){
+                        resultTxt.setText("Mark: " + mark + "/" + total + "\n\n Click Next when you are ready to learn more.");
+                        next = true;
+                    } else if (next == true){
+                        Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
+                        a.putExtra("moduleNo", moduleNo);
+                        startActivity(a);
+                    }
+
                 }
             }
         });
