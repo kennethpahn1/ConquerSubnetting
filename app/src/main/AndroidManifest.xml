@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kennethpahn.infs1609tutorialapplication">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,7 +32,8 @@
         <activity android:name=".test" />
         <activity android:name=".contentDisp" />
         <activity android:name=".mcqQuizDisp" />
-        <activity android:name=".tfQuizDisp"></activity>
+        <activity android:name=".tfQuizDisp" />
+        <activity android:name=".multimediaContentDisp"></activity>
     </application>
 
 </manifest>

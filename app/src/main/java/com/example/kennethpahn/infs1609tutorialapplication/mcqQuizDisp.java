@@ -24,16 +24,16 @@ public class mcqQuizDisp extends AppCompatActivity {
     private mcqQuizContent[] populateMcqQuiz(int moduleNo){
         mcqQuizContent[] mcqQuiz = new mcqQuizContent[10];
         if (moduleNo == 0){
-            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[5] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[6] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[7] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[8] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[9] = new mcqQuizContent(1, 1, 2, "Hello, how are you today?", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[5] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[6] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[7] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[8] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[9] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
         }
         return mcqQuiz;
     }
@@ -79,7 +79,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             aOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
+                            Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
                             a.putExtra("moduleNo", moduleNo);
                             startActivity(a);
                         }
@@ -102,7 +102,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             bOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
+                            Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
                             a.putExtra("moduleNo", moduleNo);
                             startActivity(a);
                         }
@@ -125,7 +125,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             cOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
+                            Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
                             a.putExtra("moduleNo", moduleNo);
                             startActivity(a);
                         }
@@ -148,7 +148,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                             dOption.setChecked(false);
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Intent a = new Intent(mcqQuizDisp.this, tfQuizDisp.class);
+                            Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
                             a.putExtra("moduleNo", moduleNo);
                             startActivity(a);
                         }

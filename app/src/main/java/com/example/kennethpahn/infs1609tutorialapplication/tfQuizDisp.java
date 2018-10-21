@@ -18,16 +18,16 @@ public class tfQuizDisp extends AppCompatActivity {
     private tfQuizContent[] populateTfQuiz(int moduleNo){
         tfQuizContent[] tfQuiz = new tfQuizContent[10];
         if (moduleNo == 0){
-            tfQuiz[0] = new tfQuizContent(1, 1, 1, "True/False?", 1);
-            tfQuiz[1] = new tfQuizContent(1, 1, 2, "True/False?", 0);
-            tfQuiz[2] = new tfQuizContent(1, 1, 3, "True/False?", 0);
-            tfQuiz[3] = new tfQuizContent(1, 1, 4, "True/False?", 1);
-            tfQuiz[4] = new tfQuizContent(1, 1, 5, "True/False?", 0);
-            tfQuiz[5] = new tfQuizContent(1, 1, 6, "True/False?", 1);
-            tfQuiz[6] = new tfQuizContent(1, 1, 7, "True/False?",0);
-            tfQuiz[7] = new tfQuizContent(1, 1, 8, "True/False?", 0);
-            tfQuiz[8] = new tfQuizContent(1, 1, 9, "True/False?", 1);
-            tfQuiz[9] = new tfQuizContent(1, 1, 10, "True/False?", 1);
+            tfQuiz[0] = new tfQuizContent(1, 1, 1, "True/False? 1", 1);
+            tfQuiz[1] = new tfQuizContent(1, 1, 2, "True/False? 0", 0);
+            tfQuiz[2] = new tfQuizContent(1, 1, 3, "True/False? 0", 0);
+            tfQuiz[3] = new tfQuizContent(1, 1, 4, "True/False? 1", 1);
+            tfQuiz[4] = new tfQuizContent(1, 1, 5, "True/False? 0", 0);
+            tfQuiz[5] = new tfQuizContent(1, 1, 6, "True/False? 1", 1);
+            tfQuiz[6] = new tfQuizContent(1, 1, 7, "True/False? 0",0);
+            tfQuiz[7] = new tfQuizContent(1, 1, 8, "True/False? 0", 0);
+            tfQuiz[8] = new tfQuizContent(1, 1, 9, "True/False? 1", 1);
+            tfQuiz[9] = new tfQuizContent(1, 1, 10, "True/False? 1", 1);
         }
         return tfQuiz;
     }
@@ -50,38 +50,38 @@ public class tfQuizDisp extends AppCompatActivity {
         trueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tfQuiz[counter].getSolution() == 1){
-                    resultTxt.setText("Result: Correct!");
-                    counter++;
-                    try{
+                try{
+                    if (tfQuiz[counter].getSolution() == 1){
+                        resultTxt.setText("Result: Correct!");
+                        counter++;
                         questionTxt.setText(tfQuiz[counter].getQuestion());
-                    } catch (Exception e){
-                        e.printStackTrace();
-                        Intent a = new Intent(tfQuizDisp.this, MainActivity.class);
-                        a.putExtra("moduleNo", moduleNo);
-                        startActivity(a);
+                    } else {
+                        resultTxt.setText("Result: Incorrect. Try again!");
                     }
-                } else {
-                    resultTxt.setText("Result: Incorrect. Try again!");
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
+                    a.putExtra("moduleNo", moduleNo);
+                    startActivity(a);
                 }
             }
         });
         falseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tfQuiz[counter].getSolution() == 0){
-                    resultTxt.setText("Result: Correct!");
-                    counter++;
-                    try{
+                try{
+                    if (tfQuiz[counter].getSolution() == 0){
+                        resultTxt.setText("Result: Correct!");
+                        counter++;
                         questionTxt.setText(tfQuiz[counter].getQuestion());
-                    } catch (Exception e){
-                        e.printStackTrace();
-                        Intent a = new Intent(tfQuizDisp.this, MainActivity.class);
-                        a.putExtra("moduleNo", moduleNo);
-                        startActivity(a);
+                    } else {
+                        resultTxt.setText("Result: Incorrect. Try again!");
                     }
-                } else{
-                    resultTxt.setText("Result: Incorrect. Try again!");
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
+                    a.putExtra("moduleNo", moduleNo);
+                    startActivity(a);
                 }
             }
         });
