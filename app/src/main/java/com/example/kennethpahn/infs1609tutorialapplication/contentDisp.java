@@ -69,7 +69,7 @@ public class contentDisp extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Intent a = new Intent(contentDisp.this, mcqQuizDisp.class);
+                    Intent a = new Intent(contentDisp.this, tfQuizDisp.class);
                     a.putExtra("moduleNo", moduleNo);
                     //a.putExtra("moduleName", moduleArray[position].getName());
                     //a.putExtra("moduleDesc", moduleArray[position].getDescription());

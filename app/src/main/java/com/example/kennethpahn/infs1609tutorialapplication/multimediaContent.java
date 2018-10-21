@@ -11,4 +11,7 @@ public class multimediaContent {
         this.order = order;
         this.URL = URL;
     }
+    public String getURL(){
+        return this.URL;
+    }
 }
