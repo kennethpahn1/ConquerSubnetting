@@ -14,11 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".moduleDetail" />
         <activity
@@ -33,7 +29,15 @@
         <activity android:name=".contentDisp" />
         <activity android:name=".mcqQuizDisp" />
         <activity android:name=".tfQuizDisp" />
-        <activity android:name=".multimediaContentDisp"></activity>
+        <activity android:name=".multimediaContentDisp" />
+        <activity android:name=".LaunchActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

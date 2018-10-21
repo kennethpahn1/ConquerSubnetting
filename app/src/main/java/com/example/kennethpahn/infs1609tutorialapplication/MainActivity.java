@@ -1,6 +1,7 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,35 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // populate all the data required
+        populateModules();
+        // link to UI
+        moduleListView = (ListView) findViewById(R.id.moduleList);
+        // create Array List for the initial UI
+        ArrayList<String> moduleList = new ArrayList<String>(Arrays.asList(moduleListArray));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.list_item, moduleList);
+        moduleListView.setAdapter(arrayAdapter);
+        // intents - allow a selection of a module and move onto the next part...
+        moduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Intent a = new Intent(MainActivity.this, moduleDetail.class);
+                a.putExtra("moduleNo", position);
+                a.putExtra("moduleName", moduleArray[position].getName());
+                a.putExtra("moduleDesc", moduleArray[position].getDescription());
+                startActivity(a);
+            }
+        });
+    }
+
     // declare all the UI elements
     private ListView moduleListView;
     // these help populate all the content
@@ -50,31 +80,5 @@ public class MainActivity extends AppCompatActivity {
             moduleListArray[i] = moduleArray[i].getName();
         }
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        // populate all the data required
-        populateModules();
-        // link to UI
-        moduleListView = (ListView) findViewById(R.id.moduleList);
-        // create Array List for the initial UI
-        ArrayList<String> moduleList = new ArrayList<String>(Arrays.asList(moduleListArray));
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                MainActivity.this, R.layout.list_item, moduleList);
-        moduleListView.setAdapter(arrayAdapter);
-        // intents - allow a selection of a module and move onto the next part...
-        moduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", position);
-                a.putExtra("moduleName", moduleArray[position].getName());
-                a.putExtra("moduleDesc", moduleArray[position].getDescription());
-                startActivity(a);
-            }
-        });
-    }
+
 }
