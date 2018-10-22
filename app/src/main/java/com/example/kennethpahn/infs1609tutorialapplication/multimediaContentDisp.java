@@ -14,11 +14,9 @@ import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 import static com.google.android.youtube.player.YouTubePlayer.*;
-// modules
-
 // sourced from https://android-coffee.com/tutorial-play-youtube-video/
 public class multimediaContentDisp extends YouTubeBaseActivity implements OnInitializedListener {
-    // has all the links
+    // has all the links for each module and sends it across
     private multimediaContent[] populateMultimediaContent(int moduleNo){
         multimediaContent[] multimediaModule = new multimediaContent[3];
         if (moduleNo == 0){
@@ -28,13 +26,14 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         }
         return multimediaModule;
     }
+    // API key so then we can get some youtube videos going
     public static final String API_KEY = "AIzaSyCoHPQ88V6gN65zgPNgNoVF6igNAI9kRds";
     public static String VIDEO_ID = "";
+    // so then the app can keep track of which video to play next
     private int moduleNo;
     private int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multimedia_content_disp);
         /** Initializing YouTube Player View **/
@@ -44,18 +43,16 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
         counter = infoPassed.getInt("counter");
-        // populate
+        // populate and play the video
         multimediaContent[] multimediaModule = populateMultimediaContent(moduleNo);
-        // get the first video
         VIDEO_ID = multimediaModule[counter].getURL();
-        // stolen from https://stackoverflow.com/questions/2150287/force-an-android-activity-to-always-use-landscape-mode#2150558
-        // force landscape mode
-        //
     }
+    // just in case the thing doesn't wanna start up
     @Override
     public void onInitializationFailure(Provider provider, YouTubeInitializationResult result) {
         Toast.makeText(this, "Failed to initialise!", Toast.LENGTH_LONG).show();
     }
+    // this plays the video when the video is initialised
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         /** add listeners to YouTubePlayer instance **/
@@ -66,6 +63,7 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
             player.cueVideo(VIDEO_ID);
         }
     }
+    // just a bunch of things to do when the thing is playing or not, no need for this.
     private PlaybackEventListener playbackEventListener = new PlaybackEventListener() {
         @Override
         public void onBuffering(boolean arg0) {
@@ -98,8 +96,7 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         }
         @Override
         public void onVideoEnded() {
-
-            // change the videos
+            // change the videos to the next one in the module and reopen this java intent thingo
             counter++;
             if (counter < 3){
                 Intent a = new Intent(multimediaContentDisp.this, multimediaContentDisp.class);

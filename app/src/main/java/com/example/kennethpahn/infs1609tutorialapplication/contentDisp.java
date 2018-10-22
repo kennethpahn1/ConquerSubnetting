@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class contentDisp extends AppCompatActivity {
+    // This section allows the program to get the UI ready.
     private Button nextBtn;
     private Button prevBtn;
     private TextView moduleNameTxt;
     private TextView moduleContentTxt;
     private int i = 0;
     private int moduleNo;
+    // this populates the module content so then the user can read what's available in that module.
     private String[] populateModuleContent(int moduleNo){
         String[] moduleContentArray = new String[4];
         // populate module content
@@ -61,6 +63,7 @@ public class contentDisp extends AppCompatActivity {
             public void onClick(View v) {
                 // basically stop it from crashing if there's less than the usual amount on the array.
                 try {
+                    // this loads the content text.
                     if (moduleContentArray[i + 1].equals(null)){
 
                     } else{
@@ -69,13 +72,9 @@ public class contentDisp extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    // this loads the true/false quiz when the user is done with the module
                     Intent a = new Intent(contentDisp.this, tfQuizDisp.class);
                     a.putExtra("moduleNo", moduleNo);
-                    //a.putExtra("moduleName", moduleArray[position].getName());
-                    //a.putExtra("moduleDesc", moduleArray[position].getDescription());
-                    //if (position == 0){
-                        //a.putExtra("moduleContents", moduleContentArray);
-                    //}
                     startActivity(a);
                 }
 
@@ -85,6 +84,7 @@ public class contentDisp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    // basically stop it from crashing if the number goes <0.
                     if (moduleContentArray[i - 1].equals(null)){
 
                     } else{

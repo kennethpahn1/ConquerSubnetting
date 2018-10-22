@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // populate all the data required
         populateModules();
         // link to UI
@@ -42,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     // declare all the UI elements
     private ListView moduleListView;
     // these help populate all the content
     private String[] moduleListArray = new String[12];
     private modules[] moduleArray = new modules[12];
+    // this populates the module directory so users can see them on the listview.
     public void populateModules(){
         // populate the module directory
         modules module1 = new modules(1, getResources().getString(R.string.module1), "Helps you write a simple Java program, write output to a console, explain the basic syntax of a Java program, and create/compile/run Java programs.");
