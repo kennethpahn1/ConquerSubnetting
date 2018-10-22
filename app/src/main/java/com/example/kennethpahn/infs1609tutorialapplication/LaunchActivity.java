@@ -14,7 +14,6 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launch);
-
         //open splash screen. sourced from: https://www.youtube.com/watch?v=jXtof6OUtcE
         new Handler().postDelayed(new Runnable(){
             @Override

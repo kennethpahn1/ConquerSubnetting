@@ -42,6 +42,38 @@ public class mcqQuizDisp extends AppCompatActivity {
         }
         return mcqQuiz;
     }
+    // handle checking answers for us
+    private int checkAnswer(int user, int answer){
+        if (user == answer) {
+            if (add == true) {
+                mark++;
+                total++;
+            }
+            counter++;
+            add = true;
+            resultTxt.setText("Result: Correct!\nMark: " + mark + "/" + total);
+
+            return 1;
+        } else {
+            if (add == true) {
+                total++;
+            }
+            add = false;
+            resultTxt.setText("Result: Incorrect. Try again!\nMark: " + mark + "/" + total);
+            return 0;
+        }
+    }
+    // handles the error for us (as in, moves it back to Main Activity).
+    private void error(){
+        if (next == false){
+            resultTxt.setText("Mark: " + mark + "/" + total + "\nClick Next when you are ready to learn more.");
+            next = true;
+        } else if (next == true){
+            Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
+            a.putExtra("moduleNo", moduleNo);
+            startActivity(a);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,151 +102,71 @@ public class mcqQuizDisp extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if (aOption.isChecked() == true){
-                    if (solution == 0){
-                        counter++;
-                        try {
-                            if (add == true){
-                                mark++;
-                                total++;
-                            }
-                            counter++;
+                    try {
+                        if (checkAnswer(0, mcqQuiz[counter].getSolution()) == 1) {
+                            // load next questions and answers
                             questionTxt.setText(mcqQuiz[counter].getQuestion());
-                            add = true;
                             String[] answers = mcqQuiz[counter].getAnswers();
-                            solution = mcqQuiz[counter].getSolution();
                             aOption.setText(answers[0]);
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
                             aOption.setChecked(false);
-                            add = true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            if (next == false){
-                                resultTxt.setText("Mark: " + mark + "/" + total + "\n\n Click Next when you are ready to learn more.");
-                                next = true;
-                            } else if (next == true){
-                                Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
-                                a.putExtra("moduleNo", moduleNo);
-                                startActivity(a);
-                            }
                         }
-                        resultTxt.setText("Result: Correct!\n\n Mark: " + mark + "/" + total);
-                    } else{
-                        total++;
-                        add = false;
-                        resultTxt.setText("Result: Incorrect. Try again!\n\n Mark: " + mark + "/" + total);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        error();
                     }
                 }
                 if (bOption.isChecked() == true){
-                    if (solution == 1){
-                        counter++;
-                        try {
-                            if (add == true){
-                                mark++;
-                                total++;
-                            }
-                            counter++;
+                    try {
+                        if (checkAnswer(1, mcqQuiz[counter].getSolution()) == 1) {
+                            // load next questions and answers
                             questionTxt.setText(mcqQuiz[counter].getQuestion());
-                            add = true;
                             String[] answers = mcqQuiz[counter].getAnswers();
-                            solution = mcqQuiz[counter].getSolution();
                             aOption.setText(answers[0]);
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
                             bOption.setChecked(false);
-                            add = true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            if (next == false){
-                                resultTxt.setText("Mark: " + mark + "/" + total + "\n\n Click Next when you are ready to learn more.");
-                                next = true;
-                            } else if (next == true){
-                                Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
-                                a.putExtra("moduleNo", moduleNo);
-                                startActivity(a);
-                            }
                         }
-                        resultTxt.setText("Result: Correct!\n\n Mark: " + mark + "/" + total);
-                    } else{
-                        total++;
-                        add = false;
-                        resultTxt.setText("Result: Incorrect. Try again!\n\n Mark: " + mark + "/" + total);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        error();
                     }
                 }
                 if (cOption.isChecked() == true){
-                    if (solution == 2){
-                        counter++;
-                        try {
-                            if (add == true){
-                                mark++;
-                                total++;
-                            }
-                            counter++;
+                    try {
+                        if (checkAnswer(2, mcqQuiz[counter].getSolution()) == 1) {
+                            // load next questions and answers
                             questionTxt.setText(mcqQuiz[counter].getQuestion());
-                            add = true;
                             String[] answers = mcqQuiz[counter].getAnswers();
-                            solution = mcqQuiz[counter].getSolution();
                             aOption.setText(answers[0]);
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
                             cOption.setChecked(false);
-                            add = true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            if (next == false){
-                                resultTxt.setText("Mark: " + mark + "/" + total + "\n\n Click Next when you are ready to learn more.");
-                                next = true;
-                            } else if (next == true){
-                                Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
-                                a.putExtra("moduleNo", moduleNo);
-                                startActivity(a);
-                            }
                         }
-                        resultTxt.setText("Result: Correct!\n\n Mark: " + mark + "/" + total);
-                    } else{
-                        total++;
-                        add = false;
-                        resultTxt.setText("Result: Incorrect. Try again!\n\n Mark: " + mark + "/" + total);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        error();
                     }
                 }
-                if (dOption.isChecked() == true){
-                    if (solution == 3){
-                        counter++;
-                        try {
-                            if (add == true){
-                                mark++;
-                                total++;
-                            }
-                            counter++;
+                if (dOption.isChecked() == true) {
+                    try {
+                        if (checkAnswer(3, mcqQuiz[counter].getSolution()) == 1) {
+                            // load next questions and answers
                             questionTxt.setText(mcqQuiz[counter].getQuestion());
-                            add = true;
                             String[] answers = mcqQuiz[counter].getAnswers();
-                            solution = mcqQuiz[counter].getSolution();
                             aOption.setText(answers[0]);
                             bOption.setText(answers[1]);
                             cOption.setText(answers[2]);
                             dOption.setText(answers[3]);
                             dOption.setChecked(false);
-                            add = true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            if (next == false){
-                                resultTxt.setText("Mark: " + mark + "/" + total + "\n\n Click Next when you are ready to learn more.");
-                                next = true;
-                            } else if (next == true){
-                                Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
-                                a.putExtra("moduleNo", moduleNo);
-                                startActivity(a);
-                            }
                         }
-                        resultTxt.setText("Result: Correct!\n\n Mark: " + mark + "/" + total);
-                    } else{
-                        total++;
-                        add = false;
-                        resultTxt.setText("Result: Incorrect. Try again!\n\n Mark: " + mark + "/" + total);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        error();
                     }
                 }
             }
