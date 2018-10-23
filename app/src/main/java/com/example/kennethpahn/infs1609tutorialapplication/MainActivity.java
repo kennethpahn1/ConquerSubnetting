@@ -44,38 +44,26 @@ public class MainActivity extends AppCompatActivity {
     // declare all the UI elements
     private ListView moduleListView;
     // these help populate all the content
-    private String[] moduleListArray = new String[12];
-    private modules[] moduleArray = new modules[12];
+    private String[] moduleListArray = new String[5];
+    private modules[] moduleArray = new modules[5];
     // this populates the module directory so users can see them on the listview.
     public void populateModules(){
         // populate the module directory
-        modules module1 = new modules(1, getResources().getString(R.string.module1), "Helps you write a simple Java program, write output to a console, explain the basic syntax of a Java program, and create/compile/run Java programs.");
-        modules module2 = new modules(2, "Elementary Programming 1", "Use Java for simple maths, getting input, and storing some data. Learn about data types here too.");
-        modules module3 = new modules(3, "Elementary Programming 2", "Learn some more Java simple maths, scientific notation, and increment/decrements.");
-        modules module4 = new modules(4, "Selection", "Learn about booleans, if statements, and switch statements.");
-        modules module5 = new modules(5, "Loops", "Get repetitive with some loops - while, do-while, and for loops.");
-        modules module6 = new modules(6, "Methods", "Make your own methods with parameters, return values, and making your code reusable.");
-        modules module7 = new modules(7, "Single and Multidimensional Arrays", "Declare arrays, initialize them, and more.");
-        modules module8 = new modules(8, "Objects and Classes", "Find out more about Object-oriented Programming!");
-        modules module9 = new modules(9, "Thinking in Objects", "Apply class abstractions, know the difference between procedural and object-oriented paradigms, and discover relationships between classes!");
-        modules module10 = new modules(10, "Thinking in Objects", "A continuation of lecture 9.");
-        modules module11 = new modules(11, "Inheritance", "Not about getting your family wealth, but about defining subclasses and superclasses and invoking them.");
-        modules module12 = new modules(12, "Polymorphism", "Learn more about polymorphism, dynamic binding, and generic programming.");
+        modules module1 = new modules(1, "Overview of IP Addressing", "Introduction to basic IP Addressing concepts.");
+        modules module2 = new modules(2, "Subnet Masks", "Learn more about Networks and Hosts!");
+        modules module3 = new modules(3, "Why Subnetting? The Process Broken Down", "Why do we subnet? How is it done?");
+        modules module4 = new modules(4, "IPv6", "Transitioning from IPv4 to IPv6. Why?");
+        modules module5 = new modules(5, "Resources", "Extra course resources.");
+
         // index them
         moduleArray[0] = module1;
         moduleArray[1] = module2;
         moduleArray[2] = module3;
         moduleArray[3] = module4;
         moduleArray[4] = module5;
-        moduleArray[5] = module6;
-        moduleArray[6] = module7;
-        moduleArray[7] = module8;
-        moduleArray[8] = module9;
-        moduleArray[9] = module10;
-        moduleArray[10] = module11;
-        moduleArray[11] = module12;
+
         // parse and place to get ready for ListView.
-        for (int i = 0; i < 12; i++){
+        for (int i = 0; i < 5; i++){
             moduleListArray[i] = moduleArray[i].getName();
         }
     }

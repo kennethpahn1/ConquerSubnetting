@@ -20,18 +20,10 @@ public class contentDisp extends AppCompatActivity {
         String[] moduleContentArray = new String[4];
         // populate module content
         if (moduleNo == 0){
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec varius nisl. Maecenas et hendrerit nibh, vel ullamcorper dui. Curabitur finibus " +
-                    "tortor pellentesque felis tincidunt, vel elementum sapien pretium. Sed aliquam tellus tortor, sit amet luctus odio sodales id. Phasellus nec ligula nec ipsum efficitur rhoncus a non arcu. Praesent fermentum sed sapien et aliquet. " +
-                    "Vivamus ut elit nibh. Pellentesque mauris elit, pretium vitae massa quis, pharetra gravida lacus. Cras sed metus ut nibh hendrerit tristique sit amet ac sem. Nullam sollicitudin, urna sit amet laoreet accumsan, lacus ex imperdiet est, at" +
-                    " ullamcorper mauris tortor et urna. Aenean pretium eros laoreet tortor ultrices, vel ornare mi semper.");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "Cras vehicula molestie semper. Ut aliquet ac ante ut faucibus. Quisque maximus malesuada erat non malesuada. Duis non arcu eget nisl condimentum bibendum. Proin at " +
-                    "convallis lacus. Nulla sed risus eu leo suscipit suscipit id at sem. Curabitur finibus sapien id vestibulum egestas. Maecenas sagittis interdum hendrerit. Sed pretium nisi nibh, vel suscipit magna vestibulum vel. Aenean ultricies molestie luctus. ");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "Fusce ut turpis tortor. Fusce nisl arcu, laoreet sed rhoncus vel, consequat sed arcu. Fusce erat diam, porttitor vitae sem quis, ultrices luctus orci. Donec euismod eu metus vel " +
-                    "ornare. Aenean diam nibh, ultricies quis pellentesque id, hendrerit imperdiet mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam non accumsan est. In ultricies nibh non nibh consequat lacinia. In " +
-                    "justo ipsum, vulputate et est quis, suscipit pharetra nibh. Etiam sapien purus, molestie vitae mattis id, porttitor eu lectus. Nullam quam ante, dictum vel purus at, venenatis faucibus nisi. Duis eget ultricies felis. ");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "Suspendisse potenti. Pellentesque lorem nisl, varius non vulputate ac, scelerisque sit amet leo. Vivamus consequat convallis est sed sollicitudin. Donec dui dui, aliquam sed neque" +
-                    " malesuada, porta volutpat enim. Aliquam sed fermentum erat, vitae ullamcorper elit. Sed et auctor nisi. Quisque a erat non sem euismod commodo. Quisque pharetra dictum orci, id pulvinar turpis mattis sit amet. Nulla vel iaculis nibh. Pellentesque ultricies eget" +
-                    " justo nec mattis. Maecenas mattis interdum pretium. ");
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "As opposed to physical addressing (MAC addresses), IP addresses, or Internet Protocol addresses, are a type of logical address that uniquely identifies a device on a network. Each device is assigned an IP address after it joins a network.\n");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "There are two main types of IP addresses that are used today. These are IPv4 and IPv6 addresses, of which the former is most widely used. Here, we’ll mainly be covering and using IPv4. Further reading on IPv6 is also available later in this guide.\n");
+            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "IPv4 addresses are 32-bit addresses that allows information flow to be controlled and redirected/routed. Some of the features of IP addressing are DHCP, NAT and ARP - all of which play critical functions in networking (which we won’t be covering in this subnetting course).\n");
+            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP addresses have a network portion and a host portion, which simply distinguishes between whether the portion belongs to a network or host. All devices/hosts in the same broadcast domain must have the same network portion.");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();

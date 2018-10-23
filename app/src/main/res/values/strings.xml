@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">INFS1609 Course Companion</string>
+    <string name="app_name">Divide and Conquer Subnetting</string>
     <string name="title_activity_module_content_dp">moduleContentDp</string>
     <string name="title_activity_content_display">contentDisplay</string>
     <string name="player_error">Error initializing YouTube player: %s</string>
     <string name="seek_to">Jump To</string>
     <string name="seek_to_hint">Seconds</string>
+    <string name="intro">We understand that as newbies to Computer Networking, you might be having troubles with the subnetting component of the INFS3617 (previously INFS2607) course. We have put together a guide for you, which we hope will make your life slightly easier for the duration of this course.  We have put together a concise lesson plan for you. All you need to do is follow along and test your knowledge by using our MCQ and video collection.  Good luck and all the best with the course! </string>
 </resources>
