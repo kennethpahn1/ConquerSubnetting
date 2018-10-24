@@ -1,7 +1,10 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,20 +12,31 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // populate all the data required
         populateModules();
-
-
+        Bundle infoPassed = getIntent().getExtras();
+        final int zid = infoPassed.getInt("zid");
+        System.out.println("zid received: " + zid);
 //        // link to UI
 //        moduleListView = (ListView) findViewById(R.id.moduleList);
 //        // create Array List for the initial UI
@@ -43,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(a);
 //            }
 //        });
+        // get resume information
 
         ImageButton img1 = (ImageButton) findViewById(R.id.imgBtn1);
         ImageButton img2 = (ImageButton) findViewById(R.id.imgBtn2);
@@ -64,11 +79,68 @@ public class MainActivity extends AppCompatActivity {
         img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // ask whether to continue where they left off
+                // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+                    /*
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        Intent a = new Intent(MainActivity.this, moduleDetail.class);
+                                        a.putExtra("moduleNo", 1);
+                                        a.putExtra("moduleName", moduleArray[1].getName());
+                                        a.putExtra("moduleDesc", moduleArray[1].getDescription());
+                                        startActivity(a);
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        Intent b = new Intent(MainActivity.this, moduleDetail.class);
+                                        b.putExtra("moduleNo", 2);
+                                        b.putExtra("moduleName", moduleArray[1].getName());
+                                        b.putExtra("moduleDesc", moduleArray[1].getDescription());
+                                        startActivity(b);
+                                        break;
+                                }
+                            }
+                        };*/
+                    /*
+                        if(checkResume(zid, 1) == 1) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+
+                            builder.setTitle("Confirm");
+                            builder.setMessage("Are you sure?");
+
+                            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Do nothing but close the dialog
+
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    // Do nothing
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                        */
                 Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", 1);
-                a.putExtra("moduleName", moduleArray[1].getName());
-                a.putExtra("moduleDesc", moduleArray[1].getDescription());
+                a.putExtra("moduleNo", 2);
+                a.putExtra("moduleName", moduleArray[2].getName());
+                a.putExtra("moduleDesc", moduleArray[2].getDescription());
                 startActivity(a);
+
             }
         });
 
@@ -131,5 +203,34 @@ public class MainActivity extends AppCompatActivity {
             moduleListArray[i] = moduleArray[i].getName();
         }
     }
-
+    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+    // get where the user left off
+    private int checkResume(int zid, int moduleNo) throws IOException {
+        // Stolen from https://developer.android.com/reference/android/os/StrictMode
+        // Used to allow http to run on main thread for json.
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        // uses php to register users.
+        String url = "http://feewka.kennethpahn.info/resume.php?zid=" + zid + "&module_id=" + moduleNo;
+        URL url2 = new URL(url);
+        InputStream input = (url2).openStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+        String status = readAll(rd);
+        // intent to show successful registration.
+        System.out.println("Resume Status: " + status + " & zid: " + zid + " & module: " + moduleNo);
+        if (status != "") {
+            return -1;
+        } else {
+            return Integer.valueOf(status);
+        }
+    }
 }

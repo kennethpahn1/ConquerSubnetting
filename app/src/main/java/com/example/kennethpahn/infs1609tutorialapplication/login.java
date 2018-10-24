@@ -62,7 +62,7 @@ public class login extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Login successful!",
                                 Toast.LENGTH_LONG).show();
                         Intent a = new Intent(login.this, MainActivity.class);
-                        a.putExtra("zid", zIDinput.getText().toString());
+                        a.putExtra("zid", Integer.valueOf(zIDinput.getText().toString()));
                         a.putExtra("name", name);
                         startActivity(a);
                     } else{
