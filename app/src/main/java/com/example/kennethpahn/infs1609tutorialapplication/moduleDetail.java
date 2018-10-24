@@ -7,12 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class moduleDetail extends AppCompatActivity {
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+public class moduleDetail extends YouTubeBaseActivity {
     // get the UI elements set
     private TextView moduleNameTxt;
     private TextView moduleDescTxt;
     private Button startBtn;
     private int moduleNo;
+
+    public static final String API_KEY = "AIzaSyCoHPQ88V6gN65zgPNgNoVF6igNAI9kRds";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +37,7 @@ public class moduleDetail extends AppCompatActivity {
         moduleDescTxt.setText(moduleDesc);
         // link button to the UI
         startBtn = (Button) findViewById(R.id.startBtn);
-        // allow it to do shit
+        // allow it to do stuff
         startBtn.setOnClickListener(new View.OnClickListener(){
               @Override
                public void onClick(View v) {
@@ -40,5 +48,36 @@ public class moduleDetail extends AppCompatActivity {
                }
             }
         );
+
+        YouTubePlayerView youTubePlayerView;
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player);
+        YouTubePlayer.OnInitializedListener onInitializedListener;
+
+        onInitializedListener = new YouTubePlayer.OnInitializedListener(){
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                switch(moduleNo){
+                    case 0: youTubePlayer.loadVideo("U2IxdEYgoEg");
+                    break;
+                    case 1: youTubePlayer.loadVideo("_bn0CF5zqvo");
+                    break;
+                    case 2: youTubePlayer.loadVideo("ZxAwQB8TZsM");
+                    break;
+                    case 3: youTubePlayer.loadVideo("j3VIgP9aosY");
+                    break;
+                }
+
+                youTubePlayer.play();
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+            }
+        };
+
+        youTubePlayerView.initialize(API_KEY,onInitializedListener);
+
+
+
     }
 }
