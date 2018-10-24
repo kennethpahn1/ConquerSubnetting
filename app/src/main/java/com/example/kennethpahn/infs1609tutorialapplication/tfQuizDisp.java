@@ -26,7 +26,7 @@ public class tfQuizDisp extends AppCompatActivity {
     private TextView resultTxt;
     // this is just to hold information for the rest of the program
     private int moduleNo;
-    private int counter;
+    private int counter = 0;
     private boolean add = true; // so this prevents retried questions from being taken as correct.
     private boolean next = false;
     // this is to hold the marks

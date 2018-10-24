@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle infoPassed = getIntent().getExtras();
         final int zid = infoPassed.getInt("zid");
         System.out.println("zid received: " + zid);
+
 //        // link to UI
 //        moduleListView = (ListView) findViewById(R.id.moduleList);
 //        // create Array List for the initial UI
@@ -64,116 +65,86 @@ public class MainActivity extends AppCompatActivity {
         ImageButton img3 = (ImageButton) findViewById(R.id.imgBtn3);
         ImageButton img4 = (ImageButton) findViewById(R.id.imgBtn4);
         ImageButton img5 = (ImageButton) findViewById(R.id.imgBtn5);
-
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", 0);
-                a.putExtra("moduleName", moduleArray[0].getName());
-                a.putExtra("moduleDesc", moduleArray[0].getDescription());
-                startActivity(a);
+                try {
+                    int section = checkResume(zid, 0);
+                    System.out.println("checkResume output: " + section);
+                    if(section != -1) {
+                        resumeMsg(0, zid, section);
+                    } else{
+                        handoff(0, zid, 0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
-
         img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // ask whether to continue where they left off
-                // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
-                    /*
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                    case DialogInterface.BUTTON_POSITIVE:
-                                        Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                                        a.putExtra("moduleNo", 1);
-                                        a.putExtra("moduleName", moduleArray[1].getName());
-                                        a.putExtra("moduleDesc", moduleArray[1].getDescription());
-                                        startActivity(a);
-                                        break;
-
-                                    case DialogInterface.BUTTON_NEGATIVE:
-                                        Intent b = new Intent(MainActivity.this, moduleDetail.class);
-                                        b.putExtra("moduleNo", 2);
-                                        b.putExtra("moduleName", moduleArray[1].getName());
-                                        b.putExtra("moduleDesc", moduleArray[1].getDescription());
-                                        startActivity(b);
-                                        break;
-                                }
-                            }
-                        };*/
-                    /*
-                        if(checkResume(zid, 1) == 1) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-
-                            builder.setTitle("Confirm");
-                            builder.setMessage("Are you sure?");
-
-                            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Do nothing but close the dialog
-
-                                    dialog.dismiss();
-                                }
-                            });
-
-                            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    // Do nothing
-                                    dialog.dismiss();
-                                }
-                            });
-
-                            AlertDialog alert = builder.create();
-                            alert.show();
-                        }
-                        */
-                Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", 2);
-                a.putExtra("moduleName", moduleArray[2].getName());
-                a.putExtra("moduleDesc", moduleArray[2].getDescription());
-                startActivity(a);
-
+                try {
+                    int section = checkResume(zid, 1);
+                    System.out.println("checkResume output: " + section);
+                    if(section != -1) {
+                        resumeMsg(1, zid, section);
+                    } else{
+                        handoff(1, zid, 0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
-
         img3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", 2);
-                a.putExtra("moduleName", moduleArray[2].getName());
-                a.putExtra("moduleDesc", moduleArray[2].getDescription());
-                startActivity(a);
+                try {
+                    int section = checkResume(zid, 2);
+                    System.out.println("checkResume output: " + section);
+                    if(section != -1) {
+                        resumeMsg(2, zid, section);
+                    } else{
+                        handoff(2, zid, 0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
-
         img4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", 3);
-                a.putExtra("moduleName", moduleArray[3].getName());
-                a.putExtra("moduleDesc", moduleArray[3].getDescription());
-                startActivity(a);
+                try {
+                    int section = checkResume(zid, 3);
+                    System.out.println("checkResume output: " + section);
+                    if(section != -1) {
+                        resumeMsg(3, zid, section);
+                    } else{
+                        handoff(3, zid, 0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         img5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MainActivity.this, moduleDetail.class);
-                a.putExtra("moduleNo", 4);
-                a.putExtra("moduleName", moduleArray[4].getName());
-                a.putExtra("moduleDesc", moduleArray[4].getDescription());
-                startActivity(a);
+                try {
+                    int section = checkResume(zid, 4);
+                    System.out.println("checkResume output: " + section);
+                    if(section != -1) {
+                        resumeMsg(4, zid, section);
+                    } else{
+                        handoff(4, zid, 0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -190,14 +161,12 @@ public class MainActivity extends AppCompatActivity {
         modules module3 = new modules(3, "Why Subnetting? The Process Broken Down", "Why do we subnet? How is it done?");
         modules module4 = new modules(4, "IPv6", "Transitioning from IPv4 to IPv6. Why?");
         modules module5 = new modules(5, "Resources", "Extra course resources.");
-
         // index them
         moduleArray[0] = module1;
         moduleArray[1] = module2;
         moduleArray[2] = module3;
         moduleArray[3] = module4;
         moduleArray[4] = module5;
-
         // parse and place to get ready for ListView.
         for (int i = 0; i < 5; i++){
             moduleListArray[i] = moduleArray[i].getName();
@@ -225,12 +194,65 @@ public class MainActivity extends AppCompatActivity {
         InputStream input = (url2).openStream();
         BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
         String status = readAll(rd);
-        // intent to show successful registration.
-        System.out.println("Resume Status: " + status + " & zid: " + zid + " & module: " + moduleNo);
-        if (status != "") {
-            return -1;
-        } else {
-            return Integer.valueOf(status);
+        System.out.println("Status: " + status);
+        return Integer.valueOf(status);
+    }
+    private void handoff(int moduleNo, int zid, int section){
+        // let's agree that 0 = from the start, 1 = from the t/f questions, 2 = from the youtube videos, and 3 = from the mcqs.
+        // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+        switch (section){
+            case 0: Intent a = new Intent(MainActivity.this, contentDisp.class);
+                a.putExtra("moduleNo", moduleNo);
+                a.putExtra("moduleName", moduleArray[moduleNo].getName());
+                a.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                a.putExtra("zid", zid);
+                startActivity(a);
+            break;
+            case 1: Intent b = new Intent(MainActivity.this, tfQuizDisp.class);
+                b.putExtra("moduleNo", moduleNo);
+                b.putExtra("moduleName", moduleArray[moduleNo].getName());
+                b.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                b.putExtra("zid", zid);
+                startActivity(b);
+                break;
+            case 2: Intent c = new Intent(MainActivity.this, multimediaContentDisp.class);
+                c.putExtra("moduleNo", moduleNo);
+                c.putExtra("moduleName", moduleArray[moduleNo].getName());
+                c.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                c.putExtra("zid", zid);
+                startActivity(c);
+                break;
+            case 3: Intent d = new Intent(MainActivity.this, mcqQuizDisp.class);
+                d.putExtra("moduleNo", moduleNo);
+                d.putExtra("moduleName", moduleArray[moduleNo].getName());
+                d.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                d.putExtra("zid", zid);
+                startActivity(d);
+                break;
+                
         }
+    }
+    private void resumeMsg(final int moduleNo, final int zid, final int section){
+        // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+        // stolen from https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Resume Study");
+        builder.setMessage("Would you like to continue from where you last left off?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // get the thing to find out where to resume at...
+                handoff(moduleNo, zid, section);
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                handoff(moduleNo, zid, 0);
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
