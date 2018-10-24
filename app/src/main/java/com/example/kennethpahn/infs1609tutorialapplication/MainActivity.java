@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         // populate all the data required
         populateModules();
 
+
 //        // link to UI
 //        moduleListView = (ListView) findViewById(R.id.moduleList);
 //        // create Array List for the initial UI

@@ -21,7 +21,7 @@ public class IntroActivity extends AppCompatActivity {
         final Button beginBtn = findViewById(R.id.beginBtn);
         beginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent a = new Intent(IntroActivity.this, MainActivity.class);
+                Intent a = new Intent(IntroActivity.this, login.class);
                 startActivity(a);
             }
         });
