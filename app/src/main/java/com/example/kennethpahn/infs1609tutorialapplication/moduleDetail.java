@@ -19,6 +19,7 @@ public class moduleDetail extends AppCompatActivity {
         setContentView(R.layout.activity_module_detail);
         // get intent and information
         Bundle infoPassed = getIntent().getExtras();
+        final int zid = infoPassed.getInt("zid");
         moduleNo = infoPassed.getInt("moduleNo");
         String moduleName = infoPassed.getString("moduleName");
         String moduleDesc = infoPassed.getString("moduleDesc");
@@ -34,6 +35,7 @@ public class moduleDetail extends AppCompatActivity {
               @Override
                public void onClick(View v) {
                   Intent a = new Intent(moduleDetail.this, contentDisp.class);
+                  a.putExtra("zid", zid);
                   a.putExtra("moduleNo", moduleNo);
                   a.putExtra("moduleName", moduleNameTxt.getText().toString());
                   startActivity(a);

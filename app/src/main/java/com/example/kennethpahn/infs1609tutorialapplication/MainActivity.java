@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // populate all the data required
         populateModules();
+        Bundle infoPassed = getIntent().getExtras();
+        final int zid = infoPassed.getInt("zid");
         // link to UI
         moduleListView = (ListView) findViewById(R.id.moduleList);
         // create Array List for the initial UI
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Intent a = new Intent(MainActivity.this, moduleDetail.class);
+                a.putExtra("zid", zid);
                 a.putExtra("moduleNo", position);
                 a.putExtra("moduleName", moduleArray[position].getName());
                 a.putExtra("moduleDesc", moduleArray[position].getDescription());

@@ -39,6 +39,7 @@ public class contentDisp extends AppCompatActivity {
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
+        final int zid = infoPassed.getInt("zid");
         String moduleName = infoPassed.getString("moduleName");
         // load UI elements
         nextBtn = (Button) findViewById(R.id.nextBtn);
@@ -66,6 +67,7 @@ public class contentDisp extends AppCompatActivity {
                     e.printStackTrace();
                     // this loads the true/false quiz when the user is done with the module
                     Intent a = new Intent(contentDisp.this, tfQuizDisp.class);
+                    a.putExtra("zid", zid);
                     a.putExtra("moduleNo", moduleNo);
                     startActivity(a);
                 }

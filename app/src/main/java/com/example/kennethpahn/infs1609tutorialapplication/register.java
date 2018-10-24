@@ -9,9 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,12 +17,11 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-public class login extends AppCompatActivity {
-    private Button loginBtn;
+public class register extends AppCompatActivity {
+    private Button registerBtn;
     private EditText zIDinput;
     private EditText zPassinput;
-    private Button registerBtn;
-    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    private EditText nameInput;
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -37,36 +33,40 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        loginBtn = (Button) findViewById(R.id.loginBtn);
+        setContentView(R.layout.activity_register);
+        registerBtn = (Button) findViewById(R.id.registerBtn);
         zIDinput = (EditText) findViewById(R.id.zIDinput);
         zPassinput = (EditText) findViewById(R.id.zPassinput);
-        registerBtn = (Button) findViewById(R.id.registerBtn);
-        //Bundle infoPassed = getIntent().getExtras();
-        //zIDinput.setText(infoPassed.getString("zid"));
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        Bundle infoPassed = getIntent().getExtras();
+        zIDinput.setText(infoPassed.getString("zid"));
+        zPassinput.setText(infoPassed.getString("zpass"));
         View.OnClickListener loginListener = new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 try {
+                    //register test
+                    // Stolen from https://developer.android.com/reference/android/os/StrictMode
+                    // Used to allow http to run on main thread for json.
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                             .permitAll().build();
                     StrictMode.setThreadPolicy(policy);
-                    String url = "http://feewka.kennethpahn.info/login.php?zid=" + zIDinput.getText().toString() + "&zpass=" + zPassinput.getText().toString();
+                    // uses php to register users.
+                    String url = "http://feewka.kennethpahn.info/register.php?zid=" + zIDinput.getText().toString() + "&zpass=" + zPassinput.getText().toString() + "&name=" + nameInput.getText().toString();
                     URL url2 = new URL(url);
                     InputStream input = (url2).openStream();
                     BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
-                    String name = readAll(rd);
-                    // load into db
-                    System.out.println("Name grabbed: " + name);
-                    if (name != ""){
-                        Toast.makeText(getApplicationContext(), "Login successful!",
+                    String status = readAll(rd);
+                    // intent to show successful registration.
+                    System.out.println("Status: " + status);
+                    if (status != ""){
+                        Toast.makeText(getApplicationContext(), "Registration successful!",
                                 Toast.LENGTH_LONG).show();
-                        Intent a = new Intent(login.this, MainActivity.class);
+                        Intent a = new Intent(register.this, login.class);
                         a.putExtra("zid", zIDinput.getText().toString());
-                        a.putExtra("name", name);
                         startActivity(a);
-                    } else{
-                        Toast.makeText(getApplicationContext(), "Login failed!",
+                    } else {
+                        Toast.makeText(getApplicationContext(), "User already exists or internet connection failed.",
                                 Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
@@ -74,16 +74,6 @@ public class login extends AppCompatActivity {
                 }
             }
         };
-        loginBtn.setOnClickListener(loginListener);
-        View.OnClickListener registerListener = new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent a = new Intent(login.this, register.class);
-                a.putExtra("zid", zIDinput.getText().toString());
-                a.putExtra("zpass", zPassinput.getText().toString());
-                startActivity(a);
-            }
-        };
-        registerBtn.setOnClickListener(registerListener);
+        registerBtn.setOnClickListener(loginListener);
     }
 }
