@@ -29,7 +29,7 @@
         <activity android:name=".tfQuizDisp" />
         <activity android:name=".multimediaContentDisp" />
         <activity
-            android:name=".LaunchActivity"
+            android:name=".login"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login" />
+        <activity android:name=".LaunchActivity" />
         <activity android:name=".register" />
         <activity android:name=".tfReview" />
         <activity android:name=".marksCheck"></activity>
