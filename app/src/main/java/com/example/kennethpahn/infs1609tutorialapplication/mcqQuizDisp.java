@@ -58,11 +58,11 @@ public class mcqQuizDisp extends AppCompatActivity {
     private mcqQuizContent[] populateMcqQuiz(int moduleNo){
         mcqQuizContent[] mcqQuiz = new mcqQuizContent[5];
         if (moduleNo == 0){
-            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Which of the following correctly displays an IPv4 address?", 1, "192.168.001.001", "192.168.15.1", "000.112.42.2", "1000.9033.1288.1199");
+            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "IPv4 addresses provide the following information:", 3, "Physical address (MAC), Host address", "Serial number, Manufacturer number", "Network address, Physical address", "Network address, Host address");
+            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "13.121.44.1 belongs to which network class?", 0, "A", "B", "C", "D");
+            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "IPv4 addresses are ___-bit addresses.", 1, "16", "32", "64", "128");
+            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "195.113.38.3 belongs to which network class?", 2, "A", "B", "C", "D");
         }
         return mcqQuiz;
     }
