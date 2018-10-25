@@ -42,6 +42,7 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
     private int moduleNo;
     private int counter = 0;
     private int zid = 0;
+    private boolean skip = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,10 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
             System.out.println("YouTube counter: " + counter);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (counter >= 3){
+            counter--;
+            skip = true;
         }
         zid = infoPassed.getInt("zid");
         // populate and play the video
@@ -119,6 +124,13 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         }
         @Override
         public void onLoaded(String arg0) {
+            if (skip == true){
+
+                Intent a = new Intent(multimediaContentDisp.this, mcqQuizDisp.class);
+                a.putExtra("moduleNo", moduleNo);
+                a.putExtra("zid", zid);
+                startActivity(a);
+            }
         }
         @Override
         public void onLoading() {
@@ -127,7 +139,7 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         public void onVideoEnded() {
             // change the videos to the next one in the module and reopen this java intent thingo
             counter++;
-            if (counter <= 3){
+            if (counter < 3){
                 Intent a = new Intent(multimediaContentDisp.this, multimediaContentDisp.class);
                 a.putExtra("moduleNo", moduleNo);
                 a.putExtra("zid", zid);
