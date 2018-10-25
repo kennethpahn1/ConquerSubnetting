@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     if (section != -1){
                         resumeMsg(0, zid, section);
                     } else{
-                        handoff(0, zid, 0);
+                        handoff(0, zid, -1);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     if (section != -1){
                         resumeMsg(1, zid, section);
                     } else{
-                        handoff(1, zid, 0);
+                        handoff(1, zid, -1);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     if (section != -1){
                         resumeMsg(2, zid, section);
                     } else{
-                        handoff(2, zid, 0);
+                        handoff(2, zid, -1);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     if (section != -1){
                         resumeMsg(3, zid, section);
                     } else{
-                        handoff(3, zid, 0);
+                        handoff(3, zid, -1);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -195,7 +195,12 @@ public class MainActivity extends AppCompatActivity {
         BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
         String status = readAll(rd);
         System.out.println("Status: " + status);
-        return Integer.valueOf(status);
+        try {
+            return Integer.valueOf(status);
+        } catch (Exception e){
+            return -1;
+        }
+
     }
     private int getOrder (int moduleNo, int zid, int section) throws IOException {
         int order = 0;
@@ -216,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         // let's agree that 0 = from the start, 1 = from the t/f questions, 2 = from the youtube videos, and 3 = from the mcqs.
         // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
         switch (section){
-            case -1: Intent e = new Intent(MainActivity.this, contentDisp.class);
+            case -1: Intent e = new Intent(MainActivity.this, moduleDetail.class);
                 e.putExtra("moduleNo", moduleNo);
                 e.putExtra("moduleName", moduleArray[moduleNo].getName());
                 e.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
@@ -256,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
                 d.putExtra("zid", zid);
                 startActivity(d);
                 break;
-                
         }
     }
     private void resumeMsg(final int moduleNo, final int zid, final int section){
