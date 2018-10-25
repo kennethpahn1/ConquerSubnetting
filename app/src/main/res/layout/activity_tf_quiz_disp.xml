@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/questionTxt"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -17,6 +17,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="Question:"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/falseBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +53,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
         android:text="Result:"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

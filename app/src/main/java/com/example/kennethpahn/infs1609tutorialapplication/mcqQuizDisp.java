@@ -130,7 +130,6 @@ public class mcqQuizDisp extends AppCompatActivity {
             counter++;
             add = true;
             resultTxt.setText("Result: Correct!\nMark: " + mark + "/" + total);
-
             return 1;
         } else {
             if (add == true) {
