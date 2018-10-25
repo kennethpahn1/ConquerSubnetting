@@ -1,8 +1,10 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -190,28 +192,75 @@ public class mcqQuizDisp extends AppCompatActivity {
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
+        zid = infoPassed.getInt("zid");
         counter = infoPassed.getInt("order");
         final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
-        zid = infoPassed.getInt("zid");
-        // resume from last picked up
-        try {
-            mark = getPastAnswers(moduleNo, zid, mcqQuiz);
-            if (mark > 0){
-                total = counter;
-                resultTxt.setText("Mark: " + mark + "/" + total);
-                counter++;
+        System.out.println("Counter: " + counter);
+        if (counter >= 4){
+            // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+            // stolen from https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125
+            // dialog fix stolen from https://stackoverflow.com/questions/27965662/how-can-i-change-default-dialog-button-text-color-in-android-5
+            AlertDialog.Builder builder = new AlertDialog.Builder(mcqQuizDisp.this, R.style.Theme_AppCompat_Light_Dialog_Alert);
+            builder.setTitle("Module Already Completed");
+            builder.setMessage("Would you prefer to reattempt this module?");
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    try {
+                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                                .permitAll().build();
+                        StrictMode.setThreadPolicy(policy);
+                        // uses php to register users.
+                        String url = "http://feewka.kennethpahn.info/clear.php?zid=" + zid + "&module_id=" + moduleNo;
+                        URL url2 = new URL(url);
+                        InputStream input = (url2).openStream();
+                        BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+                        String status = readAll(rd);
+                        System.out.println(url);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    dialog.dismiss();
+                    Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
+                    a.putExtra("zid", zid);
+                    startActivity(a);
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.dismiss();
+                    Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
+                    a.putExtra("zid", zid);
+                    startActivity(a);
+                }
+            });
+
+            AlertDialog alert = builder.create();
+
+            alert.show();
+
+
+        } else{
+            // resume from last picked up
+            try {
+                mark = getPastAnswers(moduleNo, zid, mcqQuiz);
+                if (mark > 0){
+                    total = counter;
+                    resultTxt.setText("Mark: " + mark + "/" + total);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            // populate details based on that.
+            questionTxt.setText(mcqQuiz[counter].getQuestion());
+            String[] answers = mcqQuiz[counter].getAnswers();
+            solution = mcqQuiz[counter].getSolution();
+            aOption.setText(answers[0]);
+            bOption.setText(answers[1]);
+            cOption.setText(answers[2]);
+            dOption.setText(answers[3]);
         }
-        // populate details based on that.
-        questionTxt.setText(mcqQuiz[counter].getQuestion());
-        String[] answers = mcqQuiz[counter].getAnswers();
-        solution = mcqQuiz[counter].getSolution();
-        aOption.setText(answers[0]);
-        bOption.setText(answers[1]);
-        cOption.setText(answers[2]);
-        dOption.setText(answers[3]);
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

@@ -53,48 +53,72 @@ public class tfQuizDisp extends AppCompatActivity {
         Bundle infoPassed = getIntent().getExtras();
         zid = infoPassed.getInt("zid");
         moduleNo = infoPassed.getInt("moduleNo");
+
         counter = infoPassed.getInt("order");
-        // now load the correct questions
         final tfQuizContent[] tfQuiz = populateTfQuiz(moduleNo);
-        // now to load any past answers
-        try {
-            mark = getPastAnswers(moduleNo, zid, tfQuiz);
-            if (mark > 0){
-                total = counter;
-                resultTxt.setText("Mark: " + mark + "/" + total);
+        // prevent crashing
+        if (counter >= 10){
+            Intent a = new Intent(tfQuizDisp.this, mcqQuizDisp.class);
+            a.putExtra("moduleNo", moduleNo);
+            a.putExtra("zid", zid);
+            startActivity(a);
+        } else {
+            // now load the correct questions
+
+            // now to load any past answers
+            try {
+                mark = getPastAnswers(moduleNo, zid, tfQuiz);
+                if (mark > 0){
+                    total = counter;
+                    resultTxt.setText("Mark: " + mark + "/" + total);
+                }
+                //total = counter + 1;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            //total = counter + 1;
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Counter: " + counter);
+            // initialise with the first question
+            questionTxt.setText(tfQuiz[counter].getQuestion());
         }
-        // initialise with the first question
-        questionTxt.setText(tfQuiz[counter].getQuestion());
+
         // clicks!!! get questions and solutions checks them...
         trueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if (checkAnswer(1, tfQuiz[counter].getSolution(), zid) == 1) {
-                        questionTxt.setText(tfQuiz[counter].getQuestion());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    error();
+
+                    try {
+                        if (checkAnswer(1, tfQuiz[counter].getSolution(), zid) == 1) {
+                            if (counter < 10) {
+                                questionTxt.setText(tfQuiz[counter].getQuestion());
+                            }else {
+                                error();
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+
                 }
             }
         });
         falseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if (next == false){
                 try {
                     if (checkAnswer(0, tfQuiz[counter].getSolution(), zid) == 1) {
-                        questionTxt.setText(tfQuiz[counter].getQuestion());
+                        if (counter < 10) {
+                            questionTxt.setText(tfQuiz[counter].getQuestion());
+                        } else {
+                            error();
+                        }
                     }
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
-                    error();
                 }
+            } else{
+                error();
             }
+              }
         });
     }
     // parsing...
