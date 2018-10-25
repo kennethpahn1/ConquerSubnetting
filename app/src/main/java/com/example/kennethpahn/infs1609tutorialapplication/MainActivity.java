@@ -28,12 +28,36 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    // this logs out the user on back press on the main screen.
     @Override
     public void onBackPressed() {
         // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
-        Intent a = new Intent(MainActivity.this, login.class);
-        startActivity(a);
+        // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+        // stolen from https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125
+        // dialog fix stolen from https://stackoverflow.com/questions/27965662/how-can-i-change-default-dialog-button-text-color-in-android-5
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.Theme_AppCompat_Light_Dialog_Alert);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent a = new Intent(MainActivity.this, login.class);
+                startActivity(a);
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+
+        alert.show();
+
     }
+    // the usual getting the UI and stuff to run...
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         final int zid = infoPassed.getInt("zid");
         System.out.println("zid received: " + zid);
 
-//        // link to UI
 //        moduleListView = (ListView) findViewById(R.id.moduleList);
 //        // create Array List for the initial UI
 //        ArrayList<String> moduleList = new ArrayList<String>(Arrays.asList(moduleListArray));
@@ -64,13 +87,15 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(a);
 //            }
 //        });
-        // get resume information
+
         marksBtn = (Button) findViewById(R.id.marksBtn);
         ImageButton img1 = (ImageButton) findViewById(R.id.imgBtn1);
         ImageButton img2 = (ImageButton) findViewById(R.id.imgBtn2);
         ImageButton img3 = (ImageButton) findViewById(R.id.imgBtn3);
         ImageButton img4 = (ImageButton) findViewById(R.id.imgBtn4);
         ImageButton img5 = (ImageButton) findViewById(R.id.imgBtn5);
+        // each of these image on click listeners enable the module to load. more on the functions
+        // they call later...
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +194,8 @@ public class MainActivity extends AppCompatActivity {
     private String[] moduleListArray = new String[5];
     private modules[] moduleArray = new modules[5];
     private Button marksBtn;
-    // this populates the module directory so users can see them on the listview.
+    // this populates the module directory so users can see them on the listview. this does it
+    // by getting them hardcoded, chucked into an array for easy use by the rest of the program.
     public void populateModules(){
         // populate the module directory
         modules module1 = new modules(1, "Overview of IP Addressing", "Introduction to basic IP Addressing concepts.\n\n" + "An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. An IP address serves two principal functions: host or network interface identification and location addressing.");
@@ -189,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // again - convert html into text for the app to read our api output
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -198,6 +225,8 @@ public class MainActivity extends AppCompatActivity {
         return sb.toString();
     }
     // get where the user left off
+    // does so using our custom api that connects to a mysql db which takes the order
+    // and then uses intent to pass them over and resume from the last known part.
     private int checkResume(int zid, int moduleNo) throws IOException {
         // Stolen from https://developer.android.com/reference/android/os/StrictMode
         // Used to allow http to run on main thread for json.
@@ -216,8 +245,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e){
             return -1;
         }
-
     }
+    // gets the exact part of the module (besides the section) and goes directly to that.
+    // uses our custom api for it.
     private int getOrder (int moduleNo, int zid, int section) throws IOException {
         int order = 0;
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -233,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Order grabbed: " + status);
         return order;
     }
+    // use switch statements to pick which type of handoff we use.
     private void handoff(int moduleNo, int zid, int section) throws IOException {
         // let's agree that 0 = from the start, 1 = from the t/f questions, 2 = from the youtube videos, and 3 = from the mcqs.
         // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
@@ -282,6 +313,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+    // asks the user if they'd like to continue where they'd left off using a msgbox
+    // and then use our custom api to feed it through.
     private void resumeMsg(final int moduleNo, final int zid, final int section){
         // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
         // stolen from https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125

@@ -25,50 +25,103 @@ public class contentDisp extends AppCompatActivity {
     private int i = 0;
     private int moduleNo;
     int zid;
+    // this controls the flow - it will automatically use the back button as a way to return to the
+    // home screen rather than accidentally sent it over to the previous activity which may already
+    // be completed.
     @Override
     public void onBackPressed() {
-        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-
+        // back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(contentDisp.this, MainActivity.class);
         a.putExtra("zid", zid);
         startActivity(a);
     }
     // this populates the module content so then the user can read what's available in that module.
+    // uses custom class/objects (moduleContents), converts it into a string array so the app can
+    // use it easily.
     private String[] populateModuleContent(int moduleNo){
         String[] moduleContentArray = new String[4];
         // populate module content
         if (moduleNo == 0){
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "As opposed to physical addressing (MAC addresses), IP addresses, or Internet Protocol addresses, are a type of logical address that uniquely identifies a device on a network. Each device is assigned an IP address after it joins a network.\n");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "There are two main types of IP addresses that are used today. These are IPv4 and IPv6 addresses, of which the former is most widely used. Here, we’ll mainly be covering and using IPv4. Further reading on IPv6 is also available later in this guide.\n");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "IPv4 addresses are 32-bit addresses that allows information flow to be controlled and redirected/routed. Some of the features of IP addressing are DHCP, NAT and ARP - all of which play critical functions in networking (which we won’t be covering in this subnetting course).\n");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP addresses have a network portion and a host portion, which simply distinguishes between whether the portion belongs to a network or host. All devices/hosts in the same broadcast domain must have the same network portion.");
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "As" +
+                    " opposed to physical addressing (MAC addresses), IP addresses, or Internet " +
+                    "Protocol addresses, are a type of logical address that uniquely identifies a" +
+                    " device on a network. Each device is assigned an IP address after it joins a" +
+                    " network.\n");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2,
+                    "There are two main types of IP addresses that are used today. These ar" +
+                            "e IPv4 and IPv6 addresses, of which the former is most widely used. " +
+                            "Here, we’ll mainly be covering and using IPv4. Further reading on " +
+                            "IPv6 is also available later in this guide.\n");
+            moduleContent moduleContent3 = new moduleContent(3, 1, 3,
+                    "IPv4 addresses are 32-bit addresses that allows information flow to be " +
+                            "controlled and redirected/routed. Some of the features of IP addres" +
+                            "sing are DHCP, NAT and ARP - all of which play critical functions in" +
+                            " networking (which we won’t be covering in this subnetting course).\n");
+            moduleContent moduleContent4 = new moduleContent(4, 1, 4,
+                    "IP addresses have a network portion and a host portion, which simply dist" +
+                            "inguishes between whether the portion belongs to a network or host." +
+                            " All devices/hosts in the same broadcast domain must have the same " +
+                            "network portion.");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
         } else if(moduleNo == 1){
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "It is not immediately obvious which portion of an IP address belongs to the network, and which portion belongs to the host. \n" +
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1,
+                    "It is not immediately obvious which portion of an IP address belongs to " +
+                            "the network, and which portion belongs to the host. \n" +
                     "\n" +
                     "In networking, we use subnet masks to differentiate networks and hosts. \n" +
-                    "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s represent the network portion of the address, while 0s represent hosts. \n");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "To illustrate an example of this, let’s take a look at the following IP address and subnet mask.\n\n" +
+                    "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s" +
+                            " represent the network portion of the address, while 0s represent hos" +
+                            "ts. \n");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "To" +
+                    " illustrate an example of this, let’s take a look at the following IP addres" +
+                    "s and subnet mask.\n\n" +
                     "Address: 192.168.15.1\t (in bits; 11000000.10101000.00001111.00000001)\n" +
                     "Subnet mask: 255.255.255.0  (in bits; 11111111.11111111.11111111.00000000)\n\n" +
-                    "The above IP address shows the address of a host in the network 192.168.15.0. The subnet mask essentially tells us the first 3 numbers, 192.168.15, is the host portion of the address, as the subnet mask occupies the first 24 bits of the address. \n");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "IPv4 addresses are 32-bit addresses that allows information flow to be controlled and redirected/routed. Some of the features of IP addressing are DHCP, NAT and ARP - all of which play critical functions in networking (which we won’t be covering in this subnetting course).\n");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP addresses have a network portion and a host portion, which simply distinguishes between whether the portion belongs to a network or host. All devices/hosts in the same broadcast domain must have the same network portion.");
+                    "The above IP address shows the address of a host in the network 192.168.15.0." +
+                    " The subnet mask essentially tells us the first 3 numbers, 192.168.15, is the " +
+                    "host portion of the address, as the subnet mask occupies the first 24 bits of " +
+                    "the address. \n");
+            moduleContent moduleContent3 = new moduleContent(3, 1, 3,
+                    "IPv4 addresses are 32-bit addresses that allows information flow to be " +
+                            "controlled and redirected/routed. Some of the features of IP addres" +
+                            "sing are DHCP, NAT and ARP - all of which play critical functions in" +
+                            " networking (which we won’t be covering in this subnetting course).\n");
+            moduleContent moduleContent4 = new moduleContent(4, 1, 4,
+                    "IP addresses have a network portion and a host portion, which simply" +
+                            " distinguishes between whether the portion belongs to a network or " +
+                            "host. All devices/hosts in the same broadcast domain must have the same" +
+                            " network portion.");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
         } else if(moduleNo == 2) {
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "Subnetting is a necessary process, especially in enterprises, as it is impractical to use a single network in many cases. Thus, there is a need to divide a network into multiple subnetworks, of which may serve different functions. For example, different departments within a business, such as Finance, Human Resources, Administration, Information Technology, etc. may use different networks and resources." +
-                    "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s represent the network portion of the address, while 0s represent hosts. \n");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "Breaking down a major network (Class A/B/C) allows for the creation of interconnected subnetworks.\n" +
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1,
+                    "Subnetting is a necessary process, especially in enterprises, as it is" +
+                            " impractical to use a single network in many cases. Thus, there is a" +
+                            " need to divide a network into multiple subnetworks, of which may serve" +
+                            " different functions. For example, different departments within" +
+                            " a business, such as Finance, Human Resources, Administration, " +
+                            "Information Technology, etc. may use different networks and resources." +
+                    "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s" +
+                            " represent the network portion of the address, while 0s represent hosts. \n");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2,
+                    "Breaking down a major network (Class A/B/C) allows for the creat" +
+                            "ion of interconnected subnetworks.\n" +
                     "\n" +
-                    "In order to subnet a network, we need to “borrow” bits from the host portion of the address, to create subnetwork addresses. Below is an example, where we borrowed 3 bits from the natural mask 255.255.255.0 to create 23= 8 new subnetworks. Dividing 256 by 8 will give us the 8 addresses of the subnetworks. \n");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "HOST: \t\t   204.17.5.0            11001100.00010001.00000101.00000000\n" +
+                    "In order to subnet a network, we need to “borrow” bits from the host portion o" +
+                            "f the address, to create subnetwork addresses. Below is an example, wher" +
+                            "e we borrowed 3 bits from the natural mask 255.255.255.0 to create " +
+                            "23= 8 new subnetworks. Dividing 256 by 8 will give us the 8 addresses" +
+                            " of the subnetworks. \n");
+            moduleContent moduleContent3 = new moduleContent(3, 1, 3,
+                    "HOST: \t\t   204.17.5.0            11001100.00010001.00000101.00000000\n" +
                     "SUBNET MASK: 255.255.255.224  11111111.11111111.11111111.11100000\n" +
                     "\n" +
                     "204.17.5.0 255.255.255.224     host address range 1 to 30\n" +
@@ -79,15 +132,29 @@ public class contentDisp extends AppCompatActivity {
                     "204.17.5.160 255.255.255.224   host address range 161 to 190\n" +
                     "204.17.5.192 255.255.255.224   host address range 193 to 222\n" +
                     "204.17.5.224 255.255.255.224   host address range 225 to 254");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP addresses have a network portion and a host portion, which simply distinguishes between whether the portion belongs to a network or host. All devices/hosts in the same broadcast domain must have the same network portion.");
+            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP" +
+                    " addresses have a network portion and a host portion, which simply distingu" +
+                    "ishes between whether the portion belongs to a network or host. All devices" +
+                    "/hosts in the same broadcast domain must have the same network portion.");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
         } else if(moduleNo == 3){
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "IPv4 is limited by the fact that there is a limited number of possible addresses. Thus, IPv4 addresses are a valuable resource given that there are limits based on the number of devices that are possible to use, versus the number of devices that exist today. Thus, IPv4 relies heavily on NAT (network address translation) to provide enough public IP addresses.");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "IPv6 aims to address this by introducing a new format of logical addressing, which uses 128-bit addresses as opposed to the 32-bit IPv4 addresses. This allows for a mind-boggling 340 undecillion addresses, meaning that every single device can have its own unique IPv6 address. While this technology is relatively new, it is inevitable that businesses will slowly transition into using IPv6 addresses in the not-too-distant future.");
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "IP" +
+                    "v4 is limited by the fact that there is a limited number of possible addres" +
+                    "ses. Thus, IPv4 addresses are a valuable resource given that there are limits" +
+                    " based on the number of devices that are possible to use, versus the number o" +
+                    "f devices that exist today. Thus, IPv4 relies heavily on NAT (network address t" +
+                    "ranslation) to provide enough public IP addresses.");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "IPv" +
+                    "6 aims to address this by introducing a new format of logical addressing, which " +
+                    "uses 128-bit addresses as opposed to the 32-bit IPv4 addresses. This allows for " +
+                    "a mind-boggling 340 undecillion addresses, meaning that every single device can" +
+                    " have its own unique IPv6 address. While this technology is relatively new, it" +
+                    " is inevitable that businesses will slowly transition into using IPv6 addresses " +
+                    "in the not-too-distant future.");
             moduleContent moduleContent3 = new moduleContent(3, 1, 3, "test");
             moduleContent moduleContent4 = new moduleContent(4, 1, 4, "test");
             // index them
@@ -95,16 +162,11 @@ public class contentDisp extends AppCompatActivity {
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
-
-
         }
-
-
-
-
         return moduleContentArray;
     }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // this function is used to parse the HTML output that is provided by our custom API.
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -114,6 +176,10 @@ public class contentDisp extends AppCompatActivity {
         return sb.toString();
     }
     // save status every time
+    // this save status is designed so it allows it to run in the main UI process
+    // instead of the background. makes it easier for coding.
+    // uses our custom PHP API to save the user's current status through the module so they
+    // can pick it up from later.
     private void saveStatus(int moduleNo, int zid, int order) throws IOException {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -125,6 +191,7 @@ public class contentDisp extends AppCompatActivity {
         BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
         String status = readAll(rd);
     }
+    // this sets up everything like the buttons...
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,13 +201,14 @@ public class contentDisp extends AppCompatActivity {
         moduleNo = infoPassed.getInt("moduleNo");
         zid = infoPassed.getInt("zid");
         String moduleName = infoPassed.getString("moduleName");
+        // this is used to load the one to resume from in the case the user wished to resume.
         i = infoPassed.getInt("order");
         // load UI elements
         nextBtn = (Button) findViewById(R.id.nextBtn);
         prevBtn = (Button) findViewById(R.id.prevBtn);
         moduleNameTxt = (TextView) findViewById(R.id.moduleNameTxt);
         moduleContentTxt = (TextView) findViewById(R.id.moduleContentTxt);
-        // figure out what module number we want to use...
+        // this loads all the module content.
         final String[] moduleContentArray = populateModuleContent(moduleNo);
         // load data
         moduleNameTxt.setText(moduleName);

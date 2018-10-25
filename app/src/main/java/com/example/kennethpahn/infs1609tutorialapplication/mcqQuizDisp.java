@@ -37,6 +37,7 @@ public class mcqQuizDisp extends AppCompatActivity {
     // this is to hold the marks
     private int mark;
     private int total;
+    // go back to the main activity menu screen
     public void onBackPressed() {
         // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
@@ -44,6 +45,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         startActivity(a);
     }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // use for parsing.
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -52,6 +54,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         }
         return sb.toString();
     }
+    // preload everything and populate into arrays. make it easier for later ok?
     private mcqQuizContent[] populateMcqQuiz(int moduleNo){
         mcqQuizContent[] mcqQuiz = new mcqQuizContent[5];
         if (moduleNo == 0){
@@ -64,6 +67,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         return mcqQuiz;
     }
     // handle checking answers for us
+    // checks, and saves. allows redo, but redone answers don't save.
     private int checkAnswer(int user, int answer, int zid) throws IOException {
         if (user == answer) {
             if (add == true) {
@@ -160,7 +164,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         counter = infoPassed.getInt("order");
         final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
         zid = infoPassed.getInt("zid");
-        // resume
+        // resume from last picked up
         try {
             mark = getPastAnswers(moduleNo, zid, mcqQuiz);
             if (mark > 0){
@@ -253,7 +257,7 @@ public class mcqQuizDisp extends AppCompatActivity {
             }
         });
     }
-    // save status every time
+    // save status every time using custom API and then allows it to be loaded later.
     private void saveStatus(int moduleNo, int zid, int order) throws IOException {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -265,7 +269,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
         String status = readAll(rd);
     }
-    // get past answers
+    // get past answers to calculate the marks gained until reloaded point in time.
     private int getPastAnswers(int moduleNo, int zid, mcqQuizContent[] mcqQuiz) throws IOException {
         int[] pastanswers = new int[counter];
         for (int i = 0; i < counter; i++){
@@ -283,7 +287,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         int score = getScore(pastanswers, mcqQuiz);
         return score;
     }
-    // check answers and convert to score
+    // check answers and convert to score for above function.
     private int getScore(int[] pastanswers, mcqQuizContent[] mcqQuiz){
         int score = 0;
         for (int i = 0; i < counter; i++){
