@@ -33,9 +33,16 @@ public class mcqQuizDisp extends AppCompatActivity {
     private int counter = 0;
     private boolean add = true; // so this prevents retried questions from being taken as correct.
     private boolean next = false;
+    int zid;
     // this is to hold the marks
     private int mark;
     private int total;
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
+        a.putExtra("zid", zid);
+        startActivity(a);
+    }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -130,6 +137,8 @@ public class mcqQuizDisp extends AppCompatActivity {
         } else if (next == true){
             Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
             a.putExtra("moduleNo", moduleNo);
+            // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+            a.putExtra("zid", zid);
             startActivity(a);
         }
     }
@@ -150,7 +159,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         moduleNo = infoPassed.getInt("moduleNo");
         counter = infoPassed.getInt("order");
         final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
-        final int zid = infoPassed.getInt("zid");
+        zid = infoPassed.getInt("zid");
         // resume
         try {
             mark = getPastAnswers(moduleNo, zid, mcqQuiz);

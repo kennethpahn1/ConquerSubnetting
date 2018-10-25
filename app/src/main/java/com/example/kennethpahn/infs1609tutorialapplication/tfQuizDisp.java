@@ -33,6 +33,12 @@ public class tfQuizDisp extends AppCompatActivity {
     private int mark;
     private int total;
     int zid = 0;
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(tfQuizDisp.this, MainActivity.class);
+        a.putExtra("zid", zid);
+        startActivity(a);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
