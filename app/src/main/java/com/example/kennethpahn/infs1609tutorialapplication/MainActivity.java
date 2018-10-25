@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         // get resume information
-
+        marksBtn = (Button) findViewById(R.id.marksBtn);
         ImageButton img1 = (ImageButton) findViewById(R.id.imgBtn1);
         ImageButton img2 = (ImageButton) findViewById(R.id.imgBtn2);
         ImageButton img3 = (ImageButton) findViewById(R.id.imgBtn3);
@@ -147,12 +148,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        marksBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(MainActivity.this, marksCheck.class);
+                a.putExtra("zid", zid);
+                startActivity(a);
+            }
+        });
     }
     // declare all the UI elements
     private ListView moduleListView;
     // these help populate all the content
     private String[] moduleListArray = new String[5];
     private modules[] moduleArray = new modules[5];
+    private Button marksBtn;
     // this populates the module directory so users can see them on the listview.
     public void populateModules(){
         // populate the module directory

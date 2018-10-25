@@ -39,7 +39,8 @@
         </activity>
         <activity android:name=".login" />
         <activity android:name=".register" />
-        <activity android:name=".tfReview"></activity>
+        <activity android:name=".tfReview" />
+        <activity android:name=".marksCheck"></activity>
     </application>
 
 </manifest>
