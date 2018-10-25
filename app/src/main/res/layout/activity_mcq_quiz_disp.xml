@@ -16,6 +16,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Question Text Goes Here"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,32 +52,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#000000"
             android:text="Option A"
-            android:buttonTint="#000000"/>
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/bOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#000000"
             android:text="Option B"
-            android:buttonTint="#000000"/>
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/cOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#000000"
             android:text="Option C"
-            android:buttonTint="#000000"/>
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/dOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#000000"
             android:text="Option D"
-            android:buttonTint="#000000"/>
+            android:textSize="16sp" />
     </RadioGroup>
 
     <TextView

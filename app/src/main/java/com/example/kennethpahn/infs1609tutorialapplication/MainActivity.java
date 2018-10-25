@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        marksBtn = (Button) findViewById(R.id.marksBtn);
+        ImageButton marksBtn = (ImageButton) findViewById(R.id.marksBtn);
         ImageButton img1 = (ImageButton) findViewById(R.id.imgBtn1);
         ImageButton img2 = (ImageButton) findViewById(R.id.imgBtn2);
         ImageButton img3 = (ImageButton) findViewById(R.id.imgBtn3);
@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         marksBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -193,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
     // these help populate all the content
     private String[] moduleListArray = new String[5];
     private modules[] moduleArray = new modules[5];
-    private Button marksBtn;
+    private ImageButton marksBtn;
     // this populates the module directory so users can see them on the listview. this does it
     // by getting them hardcoded, chucked into an array for easy use by the rest of the program.
     public void populateModules(){
