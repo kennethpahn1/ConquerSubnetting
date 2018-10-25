@@ -26,12 +26,13 @@ public class tfQuizDisp extends AppCompatActivity {
     private TextView resultTxt;
     // this is just to hold information for the rest of the program
     private int moduleNo;
-    private int counter;
+    private int counter = 0;
     private boolean add = true; // so this prevents retried questions from being taken as correct.
     private boolean next = false;
     // this is to hold the marks
     private int mark;
     private int total;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +46,20 @@ public class tfQuizDisp extends AppCompatActivity {
         Bundle infoPassed = getIntent().getExtras();
         final int zid = infoPassed.getInt("zid");
         moduleNo = infoPassed.getInt("moduleNo");
+        counter = infoPassed.getInt("order");
         // now load the correct questions
         final tfQuizContent[] tfQuiz = populateTfQuiz(moduleNo);
+        // now to load any past answers
+        try {
+            mark = getPastAnswers(moduleNo, zid, tfQuiz);
+            if (mark > 0){
+                total = counter;
+                resultTxt.setText("Mark: " + mark + "/" + total);
+            }
+            //total = counter + 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // initialise with the first question
         questionTxt.setText(tfQuiz[counter].getQuestion());
         trueBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +125,7 @@ public class tfQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=1";
+                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + answer;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -122,6 +135,7 @@ public class tfQuizDisp extends AppCompatActivity {
                 if (status != ""){
                     Toast.makeText(getApplicationContext(), "Answer saved.",
                             Toast.LENGTH_LONG).show();
+                    saveStatus(moduleNo, zid, counter + 1);
                 } else {
                     Toast.makeText(getApplicationContext(), "Answer save failed.",
                             Toast.LENGTH_LONG).show();
@@ -142,7 +156,7 @@ public class tfQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=1";
+                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + answer;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -152,6 +166,7 @@ public class tfQuizDisp extends AppCompatActivity {
                 if (status != ""){
                     Toast.makeText(getApplicationContext(), "Answer saved.",
                             Toast.LENGTH_LONG).show();
+                    saveStatus(moduleNo, zid, counter + 1);
                 } else {
                     Toast.makeText(getApplicationContext(), "Answer save failed.",
                             Toast.LENGTH_LONG).show();
@@ -176,5 +191,44 @@ public class tfQuizDisp extends AppCompatActivity {
             startActivity(a);
         }
     }
-
+    // save status every time
+    private void saveStatus(int moduleNo, int zid, int order) throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        // uses php to register users.
+        String url = "http://feewka.kennethpahn.info/save.php?zid=" + zid + "&module_id=" + moduleNo + "&section=" + 1 + "&order=" + order;
+        URL url2 = new URL(url);
+        InputStream input = (url2).openStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+        String status = readAll(rd);
+    }
+    // get past answers
+    private int getPastAnswers(int moduleNo, int zid, tfQuizContent[] tfQuiz) throws IOException {
+        int[] pastanswers = new int[counter];
+        for (int i = 0; i < counter - 1; i++){
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            // uses php to register users.
+            String url = "http://feewka.kennethpahn.info/gettf.php?zid=" + zid + "&module=" + moduleNo + "&q=" + i;
+            URL url2 = new URL(url);
+            InputStream input = (url2).openStream();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+            String status = readAll(rd);
+            pastanswers[i] = Integer.valueOf(status);
+        }
+        int score = getScore(pastanswers, tfQuiz);
+        return score;
+    }
+    // check answers and convert to score
+    private int getScore(int[] pastanswers, tfQuizContent[] tfQuiz){
+        int score = 0;
+        for (int i = 0; i < counter - 1; i++){
+            if (tfQuiz[i].getSolution() == pastanswers[i]){
+                score++;
+            }
+        }
+        return score;
+    }
 }

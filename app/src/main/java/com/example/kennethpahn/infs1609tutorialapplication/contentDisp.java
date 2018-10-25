@@ -1,11 +1,20 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.charset.Charset;
 
 public class contentDisp extends AppCompatActivity {
     // This section allows the program to get the UI ready.
@@ -56,6 +65,27 @@ public class contentDisp extends AppCompatActivity {
 
         return moduleContentArray;
     }
+    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+    // save status every time
+    private void saveStatus(int moduleNo, int zid, int order) throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        // uses php to register users.
+        String url = "http://feewka.kennethpahn.info/save.php?zid=" + zid + "&module_id=" + moduleNo + "&section=" + 0 + "&order=" + i;
+        URL url2 = new URL(url);
+        InputStream input = (url2).openStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+        String status = readAll(rd);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +95,7 @@ public class contentDisp extends AppCompatActivity {
         moduleNo = infoPassed.getInt("moduleNo");
         final int zid = infoPassed.getInt("zid");
         String moduleName = infoPassed.getString("moduleName");
+        i = infoPassed.getInt("order");
         // load UI elements
         nextBtn = (Button) findViewById(R.id.nextBtn);
         prevBtn = (Button) findViewById(R.id.prevBtn);
@@ -86,6 +117,7 @@ public class contentDisp extends AppCompatActivity {
                     } else{
                         i++;
                         moduleContentTxt.setText(moduleContentArray[i]);
+                        saveStatus(moduleNo, zid, i);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -108,6 +140,8 @@ public class contentDisp extends AppCompatActivity {
                     } else{
                         i--;
                         moduleContentTxt.setText(moduleContentArray[i]);
+                        saveStatus(moduleNo, zid, i);
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
