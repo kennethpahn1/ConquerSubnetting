@@ -53,8 +53,20 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         // attempt to resume?
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
+        counter = infoPassed.getInt("counter");
+        zid = infoPassed.getInt("zid");
+        int lastevent = infoPassed.getInt("lastevent");
+        if (lastevent != 123456){
+            try {
+                saveStatus(moduleNo, zid, counter);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             counter = getOrder(moduleNo, zid, 2);
+            System.out.println("YouTube counter: " + counter);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,15 +127,11 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         public void onVideoEnded() {
             // change the videos to the next one in the module and reopen this java intent thingo
             counter++;
-            if (counter < 3){
+            if (counter <= 3){
                 Intent a = new Intent(multimediaContentDisp.this, multimediaContentDisp.class);
                 a.putExtra("moduleNo", moduleNo);
                 a.putExtra("zid", zid);
-                try {
-                    saveStatus(moduleNo, zid, counter);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                a.putExtra("counter", counter);
                 startActivity(a);
             } else{
                 Intent a = new Intent(multimediaContentDisp.this, mcqQuizDisp.class);
@@ -170,7 +178,8 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
         String status = readAll(rd);
         order = Integer.valueOf(status);
-        System.out.println("Order grabbed: " + status);
+        System.out.println("Order grabbed YT: " + status);
+        System.out.println("Order grabbed YT: " + url);
         return order;
     }
 }

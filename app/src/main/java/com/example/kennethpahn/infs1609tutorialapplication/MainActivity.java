@@ -251,6 +251,8 @@ public class MainActivity extends AppCompatActivity {
                 c.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
                 c.putExtra("order", getOrder(moduleNo, zid, section));
                 c.putExtra("zid", zid);
+                c.putExtra("lastevent", 123456);
+                System.out.println("zid passed: " + zid);
                 startActivity(c);
                 break;
             case 3: Intent d = new Intent(MainActivity.this, mcqQuizDisp.class);
