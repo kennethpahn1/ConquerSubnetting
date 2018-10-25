@@ -64,11 +64,10 @@ public class tfQuizDisp extends AppCompatActivity {
             startActivity(a);
         } else {
             // now load the correct questions
-
             // now to load any past answers
             try {
                 mark = getPastAnswers(moduleNo, zid, tfQuiz);
-                if (mark > 0){
+                if (mark >= 0){
                     total = counter;
                     resultTxt.setText("Mark: " + mark + "/" + total);
                 }
@@ -293,7 +292,7 @@ public class tfQuizDisp extends AppCompatActivity {
     // get past answers
     private int getPastAnswers(int moduleNo, int zid, tfQuizContent[] tfQuiz) throws IOException {
         int[] pastanswers = new int[counter];
-        for (int i = 0; i < counter - 1; i++){
+        for (int i = 0; i < counter; i++){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -311,11 +310,14 @@ public class tfQuizDisp extends AppCompatActivity {
     // check answers and convert to score
     private int getScore(int[] pastanswers, tfQuizContent[] tfQuiz){
         int score = 0;
-        for (int i = 0; i < counter - 1; i++){
+        for (int i = 0; i < counter; i++){
+            System.out.println("lalala Counter: " + counter);
+            System.out.println("lalala i: " + i);
             if (tfQuiz[i].getSolution() == pastanswers[i]){
                 score++;
             }
         }
+        System.out.println("lalala Score: " + score);
         return score;
     }
 }

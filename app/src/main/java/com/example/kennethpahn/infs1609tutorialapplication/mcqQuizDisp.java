@@ -119,7 +119,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                 if (status != ""){
                     Toast.makeText(getApplicationContext(), "Answer saved.",
                             Toast.LENGTH_LONG).show();
-                    saveStatus(moduleNo, zid, counter);
+                    saveStatus(moduleNo, zid, counter + 1);
                 } else {
                     Toast.makeText(getApplicationContext(), "Answer save failed.",
                             Toast.LENGTH_LONG).show();
@@ -150,14 +150,14 @@ public class mcqQuizDisp extends AppCompatActivity {
                 if (status != ""){
                     Toast.makeText(getApplicationContext(), "Answer saved.",
                             Toast.LENGTH_LONG).show();
-                    saveStatus(moduleNo, zid, counter);
+                    saveStatus(moduleNo, zid, counter + 1);
                 } else {
                     Toast.makeText(getApplicationContext(), "Answer save failed.",
                             Toast.LENGTH_LONG).show();
                 }
                 total++;
             }
-            saveStatus(moduleNo, zid, counter);
+            saveStatus(moduleNo, zid, counter + 1);
             add = false;
             resultTxt.setText("Result: Incorrect. Try again!\nMark: " + mark + "/" + total);
             return 0;
@@ -227,7 +227,6 @@ public class mcqQuizDisp extends AppCompatActivity {
             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
                     dialog.dismiss();
                     Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
                     a.putExtra("zid", zid);
@@ -238,8 +237,6 @@ public class mcqQuizDisp extends AppCompatActivity {
             AlertDialog alert = builder.create();
 
             alert.show();
-
-
         } else{
             // resume from last picked up
             try {
