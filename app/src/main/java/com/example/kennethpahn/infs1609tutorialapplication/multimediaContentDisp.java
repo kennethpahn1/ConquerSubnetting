@@ -53,7 +53,6 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
         // attempt to resume?
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
-
         try {
             counter = getOrder(moduleNo, zid, 2);
         } catch (IOException e) {
@@ -119,6 +118,7 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
             if (counter < 3){
                 Intent a = new Intent(multimediaContentDisp.this, multimediaContentDisp.class);
                 a.putExtra("moduleNo", moduleNo);
+                a.putExtra("zid", zid);
                 try {
                     saveStatus(moduleNo, zid, counter);
                 } catch (IOException e) {
@@ -128,6 +128,7 @@ public class multimediaContentDisp extends YouTubeBaseActivity implements OnInit
             } else{
                 Intent a = new Intent(multimediaContentDisp.this, mcqQuizDisp.class);
                 a.putExtra("moduleNo", moduleNo);
+                a.putExtra("zid", zid);
                 startActivity(a);
             }
         }

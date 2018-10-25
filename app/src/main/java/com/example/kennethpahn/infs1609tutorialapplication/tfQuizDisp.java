@@ -32,7 +32,7 @@ public class tfQuizDisp extends AppCompatActivity {
     // this is to hold the marks
     private int mark;
     private int total;
-
+    int zid = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +44,7 @@ public class tfQuizDisp extends AppCompatActivity {
         resultTxt = (TextView) findViewById(R.id.resultTxt);
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
-        final int zid = infoPassed.getInt("zid");
+        zid = infoPassed.getInt("zid");
         moduleNo = infoPassed.getInt("moduleNo");
         counter = infoPassed.getInt("order");
         // now load the correct questions
@@ -188,6 +188,7 @@ public class tfQuizDisp extends AppCompatActivity {
         } else if (next == true) {
             Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
             a.putExtra("moduleNo", moduleNo);
+            a.putExtra("zid", zid);
             startActivity(a);
         }
     }

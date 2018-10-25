@@ -71,7 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 0);
                     System.out.println("checkResume output: " + section);
-                    resumeMsg(0, zid, section);
+                    if (section != -1){
+                        resumeMsg(0, zid, section);
+                    } else{
+                        handoff(0, zid, 0);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -84,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 1);
                     System.out.println("checkResume output: " + section);
-                    resumeMsg(0, zid, section);
+                    if (section != -1){
+                        resumeMsg(1, zid, section);
+                    } else{
+                        handoff(1, zid, 0);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -96,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 2);
                     System.out.println("checkResume output: " + section);
-                    resumeMsg(0, zid, section);
+                    if (section != -1){
+                        resumeMsg(2, zid, section);
+                    } else{
+                        handoff(2, zid, 0);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -108,7 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 3);
                     System.out.println("checkResume output: " + section);
-                    resumeMsg(0, zid, section);
+                    if (section != -1){
+                        resumeMsg(3, zid, section);
+                    } else{
+                        handoff(3, zid, 0);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -121,7 +137,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 4);
                     System.out.println("checkResume output: " + section);
-                    resumeMsg(0, zid, section);
+                    if (section != -1){
+                        resumeMsg(4, zid, section);
+                    } else{
+                        handoff(4, zid, 0);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
