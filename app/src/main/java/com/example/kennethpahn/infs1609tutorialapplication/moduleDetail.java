@@ -3,6 +3,7 @@ package com.example.kennethpahn.infs1609tutorialapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +13,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class moduleDetail extends YouTubeBaseActivity {
+public class moduleDetail extends YouTubeBaseActivity{
     // get the UI elements set
     private TextView moduleNameTxt;
     private TextView moduleDescTxt;
@@ -32,6 +33,8 @@ public class moduleDetail extends YouTubeBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_detail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+
         // get intent and information
         Bundle infoPassed = getIntent().getExtras();
         zid = infoPassed.getInt("zid");
