@@ -46,18 +46,13 @@ public class mcqQuizDisp extends AppCompatActivity {
         return sb.toString();
     }
     private mcqQuizContent[] populateMcqQuiz(int moduleNo){
-        mcqQuizContent[] mcqQuiz = new mcqQuizContent[10];
+        mcqQuizContent[] mcqQuiz = new mcqQuizContent[5];
         if (moduleNo == 0){
             mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
             mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
             mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
             mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
             mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[5] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[6] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[7] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[8] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[9] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
         }
         return mcqQuiz;
     }
@@ -72,7 +67,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordmcq.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=1";
+                String url = "http://feewka.kennethpahn.info/recordmcq.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -97,6 +92,28 @@ public class mcqQuizDisp extends AppCompatActivity {
             return 1;
         } else {
             if (add == true) {
+                //http://feewka.kennethpahn.info/recordtf.php?zid=5114063&module_id=0&module_question=0&answer=1
+                // Stolen from https://developer.android.com/reference/android/os/StrictMode
+                // Used to allow http to run on main thread for json.
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                // uses php to register users.
+                String url = "http://feewka.kennethpahn.info/recordmcq.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
+                URL url2 = new URL(url);
+                InputStream input = (url2).openStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+                String status = readAll(rd);
+                // intent to show successful registration.
+                System.out.println("Status: " + status);
+                if (status != ""){
+                    Toast.makeText(getApplicationContext(), "Answer saved.",
+                            Toast.LENGTH_LONG).show();
+                    saveStatus(moduleNo, zid, counter);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Answer save failed.",
+                            Toast.LENGTH_LONG).show();
+                }
                 total++;
             }
             saveStatus(moduleNo, zid, counter);

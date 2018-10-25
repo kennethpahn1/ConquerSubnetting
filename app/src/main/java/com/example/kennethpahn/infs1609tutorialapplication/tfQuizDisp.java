@@ -176,7 +176,7 @@ public class tfQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + answer;
+                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -207,7 +207,7 @@ public class tfQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + answer;
+                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
