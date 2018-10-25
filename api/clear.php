@@ -1,4 +1,5 @@
 <?php
+	// used to clear the progress if the user wishes to not resume.
 	$zid = $_GET['zid'];
 	$module_id = $_GET['module_id'];
 	$con=mysqli_connect("127.0.0.1","feewka","ChiYat2k18!!","feewka");

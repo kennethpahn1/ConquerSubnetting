@@ -1,4 +1,5 @@
 <?php
+	// gets where exactly in what section that a user is up to for resuming.
 	$zid = $_GET['zid'];
 	$module_id = $_GET['module_id'];
 	$section = $_GET['section'];

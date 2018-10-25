@@ -1,4 +1,5 @@
 <?php
+	// gets the answer for a true/false question.
 	$zid = $_GET['zid'];
 	$module = $_GET['module'];
 	$q = $_GET['q'];

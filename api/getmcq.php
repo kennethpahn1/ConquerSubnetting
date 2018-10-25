@@ -1,4 +1,5 @@
 <?php
+	// gets the answer for a specific mcq question.
 	$zid = $_GET['zid'];
 	$module = $_GET['module'];
 	$q = $_GET['q'];
