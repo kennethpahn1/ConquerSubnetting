@@ -69,7 +69,7 @@ public class contentDisp extends AppCompatActivity {
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
         } else if(moduleNo == 1){
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1,
+            moduleContent moduleContent1 = new moduleContent(1, 2, 1,
                     "It is not immediately obvious which portion of an IP address belongs to " +
                             "the network, and which portion belongs to the host. \n" +
                     "\n" +
@@ -77,7 +77,7 @@ public class contentDisp extends AppCompatActivity {
                     "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s" +
                             " represent the network portion of the address, while 0s represent hos" +
                             "ts. \n");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "To" +
+            moduleContent moduleContent2 = new moduleContent(2, 2, 2, "To" +
                     " illustrate an example of this, let’s take a look at the following IP addres" +
                     "s and subnet mask.\n\n" +
                     "Address: 192.168.15.1\t (in bits; 11000000.10101000.00001111.00000001)\n" +
@@ -86,23 +86,20 @@ public class contentDisp extends AppCompatActivity {
                     " The subnet mask essentially tells us the first 3 numbers, 192.168.15, is the " +
                     "host portion of the address, as the subnet mask occupies the first 24 bits of " +
                     "the address. \n");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3,
-                    "IPv4 addresses are 32-bit addresses that allows information flow to be " +
-                            "controlled and redirected/routed. Some of the features of IP addres" +
-                            "sing are DHCP, NAT and ARP - all of which play critical functions in" +
-                            " networking (which we won’t be covering in this subnetting course).\n");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4,
-                    "IP addresses have a network portion and a host portion, which simply" +
-                            " distinguishes between whether the portion belongs to a network or " +
-                            "host. All devices/hosts in the same broadcast domain must have the same" +
-                            " network portion.");
+            moduleContent moduleContent3 = new moduleContent(3, 2, 3,
+                    "Classful networks have natural, or default, masks. Below are the natural masks:\n\n" +
+                            "Class A: 255.0.0.0\n" +
+                            "Class B: 255.255.0.0\n" +
+                            "Class C: 255.255.255.0.\n");
+            moduleContent moduleContent4 = new moduleContent(4, 2, 4,
+                    "The knowledge that you have picked up from this module will serve as your fundamental base of knowledge moving forward. Make sure you understand these concepts well before you move on to the next modules! Understanding this content will serve you very well in the mid-semester and final exams.");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
         } else if(moduleNo == 2) {
-            moduleContent moduleContent1 = new moduleContent(1, 1, 1,
+            moduleContent moduleContent1 = new moduleContent(1, 3, 1,
                     "Subnetting is a necessary process, especially in enterprises, as it is" +
                             " impractical to use a single network in many cases. Thus, there is a" +
                             " need to divide a network into multiple subnetworks, of which may serve" +
@@ -111,7 +108,7 @@ public class contentDisp extends AppCompatActivity {
                             "Information Technology, etc. may use different networks and resources." +
                     "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s" +
                             " represent the network portion of the address, while 0s represent hosts. \n");
-            moduleContent moduleContent2 = new moduleContent(2, 1, 2,
+            moduleContent moduleContent2 = new moduleContent(2, 3, 2,
                     "Breaking down a major network (Class A/B/C) allows for the creat" +
                             "ion of interconnected subnetworks.\n" +
                     "\n" +
@@ -120,7 +117,7 @@ public class contentDisp extends AppCompatActivity {
                             "e we borrowed 3 bits from the natural mask 255.255.255.0 to create " +
                             "23= 8 new subnetworks. Dividing 256 by 8 will give us the 8 addresses" +
                             " of the subnetworks. \n");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3,
+            moduleContent moduleContent3 = new moduleContent(3, 3, 3,
                     "HOST: \t\t   204.17.5.0            11001100.00010001.00000101.00000000\n" +
                     "SUBNET MASK: 255.255.255.224  11111111.11111111.11111111.11100000\n" +
                     "\n" +
@@ -132,15 +129,12 @@ public class contentDisp extends AppCompatActivity {
                     "204.17.5.160 255.255.255.224   host address range 161 to 190\n" +
                     "204.17.5.192 255.255.255.224   host address range 193 to 222\n" +
                     "204.17.5.224 255.255.255.224   host address range 225 to 254");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP" +
-                    " addresses have a network portion and a host portion, which simply distingu" +
-                    "ishes between whether the portion belongs to a network or host. All devices" +
-                    "/hosts in the same broadcast domain must have the same network portion.");
+            //moduleContent moduleContent4 = new moduleContent(4, 3, 4, "test");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
-            moduleContentArray[3] = moduleContent4.getContent();
+            //moduleContentArray[3] = moduleContent4.getContent();
         } else if(moduleNo == 3){
             moduleContent moduleContent1 = new moduleContent(1, 1, 1, "IP" +
                     "v4 is limited by the fact that there is a limited number of possible addres" +
@@ -155,13 +149,13 @@ public class contentDisp extends AppCompatActivity {
                     " have its own unique IPv6 address. While this technology is relatively new, it" +
                     " is inevitable that businesses will slowly transition into using IPv6 addresses " +
                     "in the not-too-distant future.");
-            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "test");
-            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "test");
+            //moduleContent moduleContent3 = new moduleContent(3, 1, 3, "test");
+            //moduleContent moduleContent4 = new moduleContent(4, 1, 4, "test");
             // index them
             moduleContentArray[0] = moduleContent1.getContent();
             moduleContentArray[1] = moduleContent2.getContent();
-            moduleContentArray[2] = moduleContent3.getContent();
-            moduleContentArray[3] = moduleContent4.getContent();
+            //moduleContentArray[2] = moduleContent3.getContent();
+            //moduleContentArray[3] = moduleContent4.getContent();
         }
         return moduleContentArray;
     }

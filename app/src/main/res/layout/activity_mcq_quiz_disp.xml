@@ -51,28 +51,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Option A" />
+            android:text="Option A"
+            android:buttonTint="#000000"/>
 
         <RadioButton
             android:id="@+id/bOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Option B" />
+            android:text="Option B"
+            android:buttonTint="#000000"/>
 
         <RadioButton
             android:id="@+id/cOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Option C" />
+            android:text="Option C"
+            android:buttonTint="#000000"/>
 
         <RadioButton
             android:id="@+id/dOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Option D" />
+            android:text="Option D"
+            android:buttonTint="#000000"/>
     </RadioGroup>
 
     <TextView
