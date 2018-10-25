@@ -54,8 +54,39 @@ public class contentDisp extends AppCompatActivity {
             moduleContentArray[1] = moduleContent2.getContent();
             moduleContentArray[2] = moduleContent3.getContent();
             moduleContentArray[3] = moduleContent4.getContent();
-        } else if(moduleNo == 2){
-
+        } else if(moduleNo == 2) {
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "Subnetting is a necessary process, especially in enterprises, as it is impractical to use a single network in many cases. Thus, there is a need to divide a network into multiple subnetworks, of which may serve different functions. For example, different departments within a business, such as Finance, Human Resources, Administration, Information Technology, etc. may use different networks and resources." +
+                    "A subnet mask is essentially a string of 1s and 0s which helps us do this. 1s represent the network portion of the address, while 0s represent hosts. \n");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "Breaking down a major network (Class A/B/C) allows for the creation of interconnected subnetworks.\n" +
+                    "\n" +
+                    "In order to subnet a network, we need to “borrow” bits from the host portion of the address, to create subnetwork addresses. Below is an example, where we borrowed 3 bits from the natural mask 255.255.255.0 to create 23= 8 new subnetworks. Dividing 256 by 8 will give us the 8 addresses of the subnetworks. \n");
+            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "HOST: \t\t   204.17.5.0            11001100.00010001.00000101.00000000\n" +
+                    "SUBNET MASK: 255.255.255.224  11111111.11111111.11111111.11100000\n" +
+                    "\n" +
+                    "204.17.5.0 255.255.255.224     host address range 1 to 30\n" +
+                    "204.17.5.32 255.255.255.224    host address range 33 to 62\n" +
+                    "204.17.5.64 255.255.255.224    host address range 65 to 94\n" +
+                    "204.17.5.96 255.255.255.224    host address range 97 to 126\n" +
+                    "204.17.5.128 255.255.255.224   host address range 129 to 158\n" +
+                    "204.17.5.160 255.255.255.224   host address range 161 to 190\n" +
+                    "204.17.5.192 255.255.255.224   host address range 193 to 222\n" +
+                    "204.17.5.224 255.255.255.224   host address range 225 to 254");
+            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "IP addresses have a network portion and a host portion, which simply distinguishes between whether the portion belongs to a network or host. All devices/hosts in the same broadcast domain must have the same network portion.");
+            // index them
+            moduleContentArray[0] = moduleContent1.getContent();
+            moduleContentArray[1] = moduleContent2.getContent();
+            moduleContentArray[2] = moduleContent3.getContent();
+            moduleContentArray[3] = moduleContent4.getContent();
+        } else if(moduleNo == 3){
+            moduleContent moduleContent1 = new moduleContent(1, 1, 1, "IPv4 is limited by the fact that there is a limited number of possible addresses. Thus, IPv4 addresses are a valuable resource given that there are limits based on the number of devices that are possible to use, versus the number of devices that exist today. Thus, IPv4 relies heavily on NAT (network address translation) to provide enough public IP addresses.");
+            moduleContent moduleContent2 = new moduleContent(2, 1, 2, "IPv6 aims to address this by introducing a new format of logical addressing, which uses 128-bit addresses as opposed to the 32-bit IPv4 addresses. This allows for a mind-boggling 340 undecillion addresses, meaning that every single device can have its own unique IPv6 address. While this technology is relatively new, it is inevitable that businesses will slowly transition into using IPv6 addresses in the not-too-distant future.");
+            moduleContent moduleContent3 = new moduleContent(3, 1, 3, "test");
+            moduleContent moduleContent4 = new moduleContent(4, 1, 4, "test");
+            // index them
+            moduleContentArray[0] = moduleContent1.getContent();
+            moduleContentArray[1] = moduleContent2.getContent();
+            moduleContentArray[2] = moduleContent3.getContent();
+            moduleContentArray[3] = moduleContent4.getContent();
 
 
         }
