@@ -18,11 +18,11 @@
         <activity
             android:name=".moduleContentDp"
             android:label="@string/title_activity_module_content_dp"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
             android:name=".contentDisplay"
             android:label="@string/title_activity_content_display"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity android:name=".test" />
         <activity android:name=".contentDisp" />
         <activity android:name=".mcqQuizDisp" />
@@ -30,7 +30,7 @@
         <activity android:name=".multimediaContentDisp" />
         <activity
             android:name=".LaunchActivity"
-            android:theme="@style/AppTheme">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

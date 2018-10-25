@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
     private void resumeMsg(final int moduleNo, final int zid, final int section){
         // stolen from https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
         // stolen from https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.Theme_AppCompat_Light_Dialog_Alert);
         builder.setTitle("Resume Study");
         builder.setMessage("Would you like to continue from where you last left off?");
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -314,7 +314,9 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
         AlertDialog alert = builder.create();
+
         alert.show();
     }
 }
