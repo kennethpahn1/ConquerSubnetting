@@ -297,6 +297,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                            .permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                    // uses php to register users.
+                    String url = "http://feewka.kennethpahn.info/clear.php?zid=" + zid + "&module_id=" + moduleNo;
+                    URL url2 = new URL(url);
+                    InputStream input = (url2).openStream();
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+                    String status = readAll(rd);
+                    System.out.println(url);
                     handoff(moduleNo, zid, -1);
                 } catch (IOException e) {
                     e.printStackTrace();
