@@ -40,7 +40,12 @@ public class marksCheck extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try{
                     storage = printScore(zid, position);
-                    marksTxt.append("\n\nReport:\n\n" + generateReport(position));
+                    if (counter == 0){
+                        marksTxt.setText("You have not completed this module.");
+                    } else{
+                        marksTxt.append("\n\nReport:\n\n" + generateReport(position));
+                    }
+
                 } catch (Exception e){
                     marksTxt.setText("You have not completed this module.");
                 }
@@ -275,7 +280,7 @@ public class marksCheck extends AppCompatActivity {
         }
         marksTxt.append("\nT/F Score: " + correcttf + "/10 " + gradetf);
 
-        // mcq quiz bs
+        // mcq quiz
         int[] pastanswersmcq = new int[5];
         mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
         try {
