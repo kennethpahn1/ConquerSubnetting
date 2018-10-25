@@ -3,6 +3,7 @@ package com.example.kennethpahn.infs1609tutorialapplication;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -15,11 +16,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Random;
 
 public class marksCheck extends AppCompatActivity {
     private Spinner spinner2;
     private TextView marksTxt;
     private int counter = 0;
+    private boolean[] storage;
+    // the usual getting everything ready
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,25 +32,26 @@ public class marksCheck extends AppCompatActivity {
         marksTxt = (TextView) findViewById(R.id.marksTxt);
         Bundle infoPassed = getIntent().getExtras();
         final int zid = infoPassed.getInt("zid");
+        // stolen from https://stackoverflow.com/questions/23873454/android-textview-scrollable
+        marksTxt.setMovementMethod(new ScrollingMovementMethod());
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
+            // this is so we can get the score and generate a report below it.
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 try{
-                    printScore(zid, position);
+                    storage = printScore(zid, position);
+                    marksTxt.append("\n\nReport:\n\n" + generateReport(position));
                 } catch (Exception e){
                     marksTxt.setText("You have not completed this module.");
                 }
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 marksTxt.setText("");
             }
-
         });
     }
+    // populate the quiz content - usefulness of this is for being able to check answers.
     private tfQuizContent[] populateTfQuiz(int moduleNo) {
         tfQuizContent[] tfQuiz = new tfQuizContent[10];
         if (moduleNo == 0) {
@@ -109,11 +114,10 @@ public class marksCheck extends AppCompatActivity {
             tfQuiz[7] = new tfQuizContent(1, 1, 8, "In practical terms, every single device can have its own unique IPv6 address.", 1);
             tfQuiz[8] = new tfQuizContent(1, 1, 9, "It is inevitable that businesses will slowly transition into using IPv6 addresses in the not-too-distant future.", 1);
             tfQuiz[9] = new tfQuizContent(1, 1, 10, "IPv4 and IPv6 are directly compatible with each other.", 0);
-
-
         }
         return tfQuiz;
     }
+    // as above.
     private mcqQuizContent[] populateMcqQuiz(int moduleNo){
         mcqQuizContent[] mcqQuiz = new mcqQuizContent[10];
         if (moduleNo == 0){
@@ -131,6 +135,7 @@ public class marksCheck extends AppCompatActivity {
         return mcqQuiz;
     }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // again - to get our api's response parsed...
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -140,6 +145,8 @@ public class marksCheck extends AppCompatActivity {
         return sb.toString();
     }
     // get past answers
+    // uses our custom api to receive the answers one by one
+    // puts them into an array to be checked later.
     private int[] getPastAnswers(int moduleNo, int zid, tfQuizContent[] tfQuiz) throws IOException {
         counter = 0;
         int[] pastanswers = new int[10];
@@ -160,10 +167,10 @@ public class marksCheck extends AppCompatActivity {
             } catch (Exception e){
 
             }
-
         }
         return pastanswers;
     }
+    // as above, but for mcqs.
     private int[] getPastAnswers(int moduleNo, int zid, mcqQuizContent[] mcqQuiz) throws IOException {
         counter = 0;
         int[] pastanswers = new int[10];
@@ -188,7 +195,11 @@ public class marksCheck extends AppCompatActivity {
         }
         return pastanswers;
     }
-    private void printScore(int zid, int moduleNo){
+    // checks the answers from the above 2 functions, and adds them and creates a grade.
+    private boolean[] printScore(int zid, int moduleNo){
+        // array of booleans
+        boolean[] correct = new boolean[15];
+        int countertotal = 0;
         // t/f quiz bs
         int[] pastanswerstf = new int[10];
         tfQuizContent[] tfQuiz = populateTfQuiz(moduleNo);
@@ -217,7 +228,11 @@ public class marksCheck extends AppCompatActivity {
             marksTxt.append(i + "    " + user + "    " + sys + "\n");
             if (user == sys){
                 correcttf++;
+                correct[countertotal] = true;
+            } else{
+                correct[countertotal] = false;
             }
+            countertotal++;
         }
         String gradetf = "FL";
         if (correcttf / 10.00 >= 0.5) {
@@ -269,7 +284,11 @@ public class marksCheck extends AppCompatActivity {
             marksTxt.append(i + "    " + user + "    " + sys + "\n");
             if (user == sys){
                 correctmcq++;
+                correct[countertotal] = true;
+            } else{
+                correct[countertotal] = false;
             }
+            countertotal++;
         }
         String grademcq = "FL";
         System.out.println("GRADE: " + correctmcq/5.00);
@@ -286,5 +305,65 @@ public class marksCheck extends AppCompatActivity {
             grademcq = "HD";
         }
         marksTxt.append("\nMCQ Score: " + correctmcq + "/5 " + grademcq);
+        return correct;
+    }
+    // generate a report. done so with pre-configured feedbacks and then creates a report accordingly.
+    private String generateReport(int moduleNo){
+        String reportString = "";
+        reportComments[] reportComment = new reportComments[15];
+        // load cOnTeNt
+        if (moduleNo == 0){
+            for (int i = 0; i < 15; i++){
+                reportComment[i] = new reportComments(0, 0, 0, "lol u fail " + i);
+            }
+
+        }
+        for (int i = 0; i < 10; i++){
+            reportString = reportString + "T/F Question " + i + ": ";
+            if (storage[i] == true){
+                // stolen from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+                Random rn = new Random();
+                int random = rn.nextInt(3 - 0 + 1);
+                // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+                switch (random){
+                    case 0: reportString = reportString + "You got this one right. Great job!";
+                    break;
+                    case 1: reportString = reportString + "Wow! Amazing - you got this one!";
+                    break;
+                    case 2: reportString = reportString + "Are you a networking king? Looks like you are!";
+                    break;
+                    case 3: reportString = reportString + "We're proud of you - you got this correct too!";
+                    break;
+                }
+
+            } else if (storage[i] == false){
+                reportString = reportString + reportComment[i].getComment();
+            }
+            reportString = reportString + "\n";
+        }
+        for (int i = 10; i < 15; i++){
+            reportString = reportString + "MCQ Question " + i + ": ";
+            if (storage[i] == true){
+                // stolen from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+                Random rn = new Random();
+                int random = rn.nextInt(3 - 0 + 1);
+                // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+                switch (random){
+                    case 0: reportString = reportString + "You got this one right. Great job!";
+                        break;
+                    case 1: reportString = reportString + "Wow! Amazing - you got this one!";
+                        break;
+                    case 2: reportString = reportString + "Are you a networking king? Looks like you are!";
+                        break;
+                    case 3: reportString = reportString + "We're proud of you - you got this correct too!";
+                        break;
+                }
+
+            } else if (storage[i] == false){
+                reportString = reportString + reportComment[i].getComment();
+            }
+            reportString = reportString + "\n";
+        }
+        return reportString;
     }
 }

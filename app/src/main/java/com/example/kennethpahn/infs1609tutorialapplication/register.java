@@ -22,6 +22,8 @@ public class register extends AppCompatActivity {
     private EditText zIDinput;
     private EditText zPassinput;
     private EditText nameInput;
+    // this has been referenced before...
+    // parse.
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;

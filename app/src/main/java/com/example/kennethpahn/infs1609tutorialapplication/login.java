@@ -26,6 +26,7 @@ public class login extends AppCompatActivity {
     private EditText zPassinput;
     private Button registerBtn;
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // this is used to parse the html stuff into text the program can read.
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -34,6 +35,7 @@ public class login extends AppCompatActivity {
         }
         return sb.toString();
     }
+    // usual setting up buttons and stuff
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +50,19 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 try {
+                    // uses our custom php api to check if the user actually exists
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                             .permitAll().build();
                     StrictMode.setThreadPolicy(policy);
-                    String url = "http://feewka.kennethpahn.info/login.php?zid=" + zIDinput.getText().toString() + "&zpass=" + zPassinput.getText().toString();
+                    String url = "http://feewka.kennethpahn.info/login.php?zid=" +
+                            zIDinput.getText().toString() + "&zpass=" + zPassinput.getText().toString();
                     URL url2 = new URL(url);
                     InputStream input = (url2).openStream();
                     BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
                     String name = readAll(rd);
-                    // load into db
+                    // get their name
                     System.out.println("Name grabbed: " + name);
+                    // if their name isn't blank, then it's basically a legit user
                     if (name != ""){
                         Toast.makeText(getApplicationContext(), "Login successful!",
                                 Toast.LENGTH_LONG).show();
@@ -75,6 +80,7 @@ public class login extends AppCompatActivity {
             }
         };
         loginBtn.setOnClickListener(loginListener);
+        // move to the register screen
         View.OnClickListener registerListener = new View.OnClickListener(){
             @Override
             public void onClick(View view) {

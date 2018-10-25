@@ -33,6 +33,7 @@ public class tfQuizDisp extends AppCompatActivity {
     private int mark;
     private int total;
     int zid = 0;
+    // move back to main activity.
     public void onBackPressed() {
         // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(tfQuizDisp.this, MainActivity.class);
@@ -68,6 +69,7 @@ public class tfQuizDisp extends AppCompatActivity {
         }
         // initialise with the first question
         questionTxt.setText(tfQuiz[counter].getQuestion());
+        // clicks!!! get questions and solutions checks them...
         trueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +97,7 @@ public class tfQuizDisp extends AppCompatActivity {
             }
         });
     }
+    // parsing...
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -104,6 +107,7 @@ public class tfQuizDisp extends AppCompatActivity {
         }
         return sb.toString();
     }
+    // preload everything. makes it easier.
     private tfQuizContent[] populateTfQuiz(int moduleNo) {
         tfQuizContent[] tfQuiz = new tfQuizContent[10];
         if (moduleNo == 0) {
@@ -235,7 +239,8 @@ public class tfQuizDisp extends AppCompatActivity {
             return 0;
         }
     }
-    // this is to handle moving onto the next part of the module.
+    // this is to handle moving onto the next part of the module. makes it so then true button is invisble
+    // and next button is shown instead.
     private void error() {
         if (next == false) {
             resultTxt.setText("Mark: " + mark + "/" + total + "\nClick Next when you are ready to learn more.");

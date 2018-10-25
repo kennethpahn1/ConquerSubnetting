@@ -21,6 +21,7 @@ public class moduleDetail extends YouTubeBaseActivity {
     int zid;// = infoPassed.getInt("zid");
     public static final String API_KEY = "AIzaSyCoHPQ88V6gN65zgPNgNoVF6igNAI9kRds";
     @Override
+    // bring it back to main activity on back.
     public void onBackPressed() {
         // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(moduleDetail.this, MainActivity.class);
@@ -45,6 +46,7 @@ public class moduleDetail extends YouTubeBaseActivity {
         // link button to the UI
         startBtn = (Button) findViewById(R.id.startBtn);
         // allow it to do stuff
+        // use this to move across to the cOnTeNt
         startBtn.setOnClickListener(new View.OnClickListener(){
               @Override
                public void onClick(View v) {
@@ -56,7 +58,7 @@ public class moduleDetail extends YouTubeBaseActivity {
                }
             }
         );
-
+        // youtube video at the bottom.
         YouTubePlayerView youTubePlayerView;
         youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player);
         YouTubePlayer.OnInitializedListener onInitializedListener;
