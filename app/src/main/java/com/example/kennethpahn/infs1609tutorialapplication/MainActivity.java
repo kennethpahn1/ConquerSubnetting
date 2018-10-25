@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 e.putExtra("moduleNo", moduleNo);
                 e.putExtra("moduleName", moduleArray[moduleNo].getName());
                 e.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
-                e.putExtra("order", getOrder(moduleNo, zid, section));
+                //e.putExtra("order", getOrder(moduleNo, zid, section));
                 e.putExtra("zid", zid);
                 startActivity(e);
                 break;
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
-                    handoff(moduleNo, zid, 0);
+                    handoff(moduleNo, zid, -1);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
