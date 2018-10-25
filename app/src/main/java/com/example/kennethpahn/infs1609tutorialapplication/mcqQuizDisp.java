@@ -82,6 +82,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                 if (status != ""){
                     Toast.makeText(getApplicationContext(), "Answer saved.",
                             Toast.LENGTH_LONG).show();
+                    saveStatus(moduleNo, zid, counter);
                 } else {
                     Toast.makeText(getApplicationContext(), "Answer save failed.",
                             Toast.LENGTH_LONG).show();
@@ -98,6 +99,7 @@ public class mcqQuizDisp extends AppCompatActivity {
             if (add == true) {
                 total++;
             }
+            saveStatus(moduleNo, zid, counter);
             add = false;
             resultTxt.setText("Result: Incorrect. Try again!\nMark: " + mark + "/" + total);
             return 0;
@@ -129,9 +131,20 @@ public class mcqQuizDisp extends AppCompatActivity {
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
-        final int zid = infoPassed.getInt("zid");
-        // populate details based on that.
         final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
+        final int zid = infoPassed.getInt("zid");
+        // resuem
+        try {
+            mark = getPastAnswers(moduleNo, zid, mcqQuiz);
+            if (mark > 0){
+                total = counter;
+                resultTxt.setText("Mark: " + mark + "/" + total);
+            }
+            //total = counter + 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // populate details based on that.
         questionTxt.setText(mcqQuiz[counter].getQuestion());
         String[] answers = mcqQuiz[counter].getAnswers();
         solution = mcqQuiz[counter].getSolution();
@@ -212,5 +225,45 @@ public class mcqQuizDisp extends AppCompatActivity {
                 }
             }
         });
+    }
+    // save status every time
+    private void saveStatus(int moduleNo, int zid, int order) throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        // uses php to register users.
+        String url = "http://feewka.kennethpahn.info/save.php?zid=" + zid + "&module_id=" + moduleNo + "&section=" + 3 + "&order=" + order;
+        URL url2 = new URL(url);
+        InputStream input = (url2).openStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+        String status = readAll(rd);
+    }
+    // get past answers
+    private int getPastAnswers(int moduleNo, int zid, mcqQuizContent[] mcqQuiz) throws IOException {
+        int[] pastanswers = new int[counter];
+        for (int i = 0; i < counter - 1; i++){
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            // uses php to register users.
+            String url = "http://feewka.kennethpahn.info/getmcq.php?zid=" + zid + "&module=" + moduleNo + "&q=" + i;
+            URL url2 = new URL(url);
+            InputStream input = (url2).openStream();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+            String status = readAll(rd);
+            pastanswers[i] = Integer.valueOf(status);
+        }
+        int score = getScore(pastanswers, mcqQuiz);
+        return score;
+    }
+    // check answers and convert to score
+    private int getScore(int[] pastanswers, mcqQuizContent[] mcqQuiz){
+        int score = 0;
+        for (int i = 0; i < counter - 1; i++){
+            if (mcqQuiz[i].getSolution() == pastanswers[i]){
+                score++;
+            }
+        }
+        return score;
     }
 }
