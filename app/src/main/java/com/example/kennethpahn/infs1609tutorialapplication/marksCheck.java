@@ -339,7 +339,18 @@ public class marksCheck extends AppCompatActivity {
         reportComments[] reportComment = new reportComments[15];
         // load fake feedback
         for (int i = 0; i < 15; i++){
-            reportComment[i] = new reportComments(0, 0, 0, "Your personalised feedback will display here. " + i);
+            reportComment[i] = new reportComments(1, 1, 1, "The correct answer is true. All IP addresses have both a network and host portion to distinguish between devices. " + i);
+            reportComment[i] = new reportComments(1, 1, 2, "The correct answer is true. IP addressing is directly linked to these protocols and more, which allow for information flow control." + i);
+            reportComment[i] = new reportComments(1, 1, 3, "The correct answer is false. Physical addressing uses MAC addresses." + i);
+            reportComment[i] = new reportComments(1, 1, 4, "The correct answer is false. Broadcasts are only sent to hosts within the same network." + i);
+            reportComment[i] = new reportComments(1, 1, 5, "The correct answer is true. IPv4 addresses are 32-bit addresses, whereas IPv6 addresses are 128-bit addresses." + i);
+            reportComment[i] = new reportComments(1, 1, 6, "The correct answer is true. IP addresses serve as a unique identifier on a network. However, IP addresses can be reallocated as necessary." + i);
+            reportComment[i] = new reportComments(1, 1, 7, "The correct answer is false. IP addresses are dynamically and automatically assigned." + i);
+            reportComment[i] = new reportComments(1, 1, 8, "The correct answer is true. Various protocols allow for this." + i);
+            reportComment[i] = new reportComments(1, 1, 9, "The correct answer is false. While Class E networks exist, they are not used and are reserved for potential future use." + i);
+            reportComment[i] = new reportComments(1, 1, 10, "The correct answer is true. A device’s physical device is based on its MAC address." + i);
+
+
         }
 
         for (int i = 0; i < 10; i++){
