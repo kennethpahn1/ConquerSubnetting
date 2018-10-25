@@ -114,24 +114,50 @@ public class marksCheck extends AppCompatActivity {
             tfQuiz[7] = new tfQuizContent(1, 1, 8, "In practical terms, every single device can have its own unique IPv6 address.", 1);
             tfQuiz[8] = new tfQuizContent(1, 1, 9, "It is inevitable that businesses will slowly transition into using IPv6 addresses in the not-too-distant future.", 1);
             tfQuiz[9] = new tfQuizContent(1, 1, 10, "IPv4 and IPv6 are directly compatible with each other.", 0);
+
+
         }
         return tfQuiz;
     }
     // as above.
     private mcqQuizContent[] populateMcqQuiz(int moduleNo){
-        mcqQuizContent[] mcqQuiz = new mcqQuizContent[10];
+        mcqQuizContent[] mcqQuiz = new mcqQuizContent[5];
         if (moduleNo == 0){
-            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[5] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 3", 3, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[6] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[7] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 0", 0, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[8] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 2", 2, "Good", "Bad", "Very Bad", "Extremely Bad");
-            mcqQuiz[9] = new mcqQuizContent(1, 1, 2, "Hello, how are you today? 1", 1, "Good", "Bad", "Very Bad", "Extremely Bad");
+            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Which of the following correctly displays an IPv4 address?", 1, "192.168.001.001", "192.168.15.1", "000.112.42.2", "1000.9033.1288.1199");
+            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "IPv4 addresses provide the following information:", 3, "Physical address (MAC), Host address", "Serial number, Manufacturer number", "Network address, Physical address", "Network address, Host address");
+            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "13.121.44.1 belongs to which network class?", 0, "A", "B", "C", "D");
+            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "IPv4 addresses are ___-bit addresses.", 1, "16", "32", "64", "128");
+            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "195.113.38.3 belongs to which network class?", 2, "A", "B", "C", "D");
+        }else if(moduleNo == 1){
+            mcqQuiz[0] = new mcqQuizContent(1, 2, 2, "Which of the following is a reason why subnetting is so widely used?", 1, "IPv4 addresses are limited.", "Reduce network congestion and packet collision.", "Because it’s fun!", "Users want to use their own networks.");
+            mcqQuiz[1] = new mcqQuizContent(1, 2, 2, "Class A Networks have a natural mask of:", 0, "255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.224");
+            mcqQuiz[2] = new mcqQuizContent(1, 2, 2, "Class B Networks have a natural mask of:", 1, "255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.224");
+            mcqQuiz[3] = new mcqQuizContent(1, 2, 2, "Class C Networks have a natural mask of:", 2, "255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.224");
+            mcqQuiz[4] = new mcqQuizContent(1, 2, 2, "Given the following information, identify the network and host addresses.\n" +
+                    "Address: 13.211.93.13\n" +
+                    "Subnet Mask: 255.0.0.0\n", 0, "Network: 13,  Host: 211.93.13", "Network: 13.211,  Host: 93.13", "Network: 13.211.93,  Host: 13", "Host: 13.211.93.13");
+        }else if(moduleNo == 2){
+            mcqQuiz[0] = new mcqQuizContent(1, 3, 2, "Given the following information, identify the network and host addresses.\n" +
+                    "Address: 192.168.0.1\n" +
+                    "Subnet Mask: 255.255.255.0\n", 2, "Network: 192,  Host: 168.0.1", "Network: 192.168,  Host: 0.1", "Network: 192.168.0,  Host: 1", "Host: 192.168.0.1");
+            mcqQuiz[1] = new mcqQuizContent(1, 3, 2, "Given the following information, identify the subnetwork address.\n" +
+                    "Address: 172.16.17.30\n" +
+                    "Subnet Mask: 255.255.240.0\n", 1, "172.16.17.0", "172.16.16.0", "172.16.0.0", "172.0.0.0");
+            mcqQuiz[2] = new mcqQuizContent(1, 3, 2, "Given the following information, identify the subnetwork address.\n" +
+                    "Address: 172.16.28.15\n" +
+                    "Subnet Mask: 255.255.240.0\n", 2, "172.0.0.0", "172.16.28.0", "172.16.16.0", "172.16.28.0");
+            mcqQuiz[3] = new mcqQuizContent(1, 3, 2, "A network needs to be further divided into 5 subnetworks. How many bits should one borrow from the host address?", 2, "1", "2", "3", "4");
+            mcqQuiz[4] = new mcqQuizContent(1, 3, 2, "A network administrator has decided to create 16 subnetworks by borrowing bits from the host address. How many usable hosts are in each subnetwork?", 1, "8", "14", "16", "32");
+        }else if(moduleNo == 3){
+            mcqQuiz[0] = new mcqQuizContent(1, 1, 2, "Which of the following is an IPv6 address?", 0, "2001:0db8:0000:0000:0000:ff00:0042:8329", "192.168.0.1", "12090934894789372890785974320984", "abc974398r5jhcc4ur3u4c09439393nnjoijdf9");
+            mcqQuiz[1] = new mcqQuizContent(1, 1, 2, "IPv6 addresses are ___-bit addresses.", 2, "32", "64", "128", "256");
+            mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "It is ______ that IPv6 will eventually replace IPv4.", 1, "Impossible", "Inevitable", "Unlikely", "Not anticipated");
+            mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "IPv6 provides ______ possible addresses.", 3, "1 billion", "1 trillion", "100 trillion", "340 undecillion");
+            mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "IPv4 relies on ______ to provide enough public IP addresses", 0, "NAT", "DHCP", "ARP", "IPv6");
+
         }
+
+
         return mcqQuiz;
     }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
@@ -311,13 +337,11 @@ public class marksCheck extends AppCompatActivity {
     private String generateReport(int moduleNo){
         String reportString = "";
         reportComments[] reportComment = new reportComments[15];
-        // load cOnTeNt
-        if (moduleNo == 0){
-            for (int i = 0; i < 15; i++){
-                reportComment[i] = new reportComments(0, 0, 0, "lol u fail " + i);
-            }
-
+        // load fake feedback
+        for (int i = 0; i < 15; i++){
+            reportComment[i] = new reportComments(0, 0, 0, "lol u fail " + i);
         }
+
         for (int i = 0; i < 10; i++){
             reportString = reportString + "T/F Question " + i + ": ";
             if (storage[i] == true){
@@ -341,6 +365,7 @@ public class marksCheck extends AppCompatActivity {
             }
             reportString = reportString + "\n";
         }
+
         for (int i = 10; i < 15; i++){
             reportString = reportString + "MCQ Question " + i + ": ";
             if (storage[i] == true){
