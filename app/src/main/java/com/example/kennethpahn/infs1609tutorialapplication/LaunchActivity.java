@@ -18,7 +18,7 @@ public class LaunchActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                startActivity(new Intent(LaunchActivity.this, IntroActivity.class));
+                startActivity(new Intent(LaunchActivity.this, login.class));
                 finish();
             }
         }, launch_time);
