@@ -2,6 +2,7 @@ package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
@@ -278,12 +279,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(e);
                 break;
             case 0: Intent a = new Intent(MainActivity.this, contentDisp.class);
+            if (moduleNo == 4){
+                String url = "https://oc.kennethpahn.info/index.php/s/oiWxwL6zQa8nXaG";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            } else{
                 a.putExtra("moduleNo", moduleNo);
                 a.putExtra("moduleName", moduleArray[moduleNo].getName());
                 a.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
                 a.putExtra("order", getOrder(moduleNo, zid, section));
                 a.putExtra("zid", zid);
                 startActivity(a);
+            }
+
             break;
             case 1: Intent b = new Intent(MainActivity.this, tfQuizDisp.class);
                 b.putExtra("moduleNo", moduleNo);
