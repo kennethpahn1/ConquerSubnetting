@@ -349,6 +349,59 @@ public class marksCheck extends AppCompatActivity {
             reportComment[7] = new reportComments(1, 1, 8, "The correct answer is true. Various protocols allow for this." );
             reportComment[8] = new reportComments(1, 1, 9, "The correct answer is false. While Class E networks exist, they are not used and are reserved for potential future use." );
             reportComment[9] = new reportComments(1, 1, 10, "The correct answer is true. A device’s physical device is based on its MAC address." );
+            reportComment[10] = new reportComments(1, 1, 11, "The correct answer is B. The other “addresses” are not in the correct format." );
+            reportComment[11] = new reportComments(1, 1, 12, "The correct answer is D. IPv4 addresses have a distinguishable network and host portion." );
+            reportComment[12] = new reportComments(1, 1, 13, "The correct answer is A. 13.x.x.x is defined to be in Class A." );
+            reportComment[13] = new reportComments(1, 1, 14, "The correct answer is B. IPv4 addresses have 32-bits, while IPv6 addresses have 128 bits." );
+            reportComment[14] = new reportComments(1, 1, 15, "The correct answer is C. 195.x.x.x is defined to be in Class C." );
+        } else if(moduleNo == 1){
+            reportComment[0] = new reportComments(1, 2, 1, "The correct answer is false. The subnet mask is required to distinguish between network and host addresses.");
+            reportComment[1] = new reportComments(1, 2, 2, "The correct answer is true. Subnet masks exist primarily to assist in distinguishing between networks and hosts." );
+            reportComment[2] = new reportComments(1, 2, 3, "The correct answer is true. Converting the subnet mask (typically in the format xxx.xxx.xxx.xxx) into binary form yields a string of 1s and 0s which differentiate networks and hosts." );
+            reportComment[3] = new reportComments(1, 2, 4, "The correct answer is false. 1s represent the network while 0s represent hosts." );
+            reportComment[4] = new reportComments(1, 2, 5, "The correct answer is true. It is not immediately obvious which portion of an address is the network or host if the subnet mask is given in numerical format." );
+            reportComment[5] = new reportComments(1, 2, 6, "The correct answer is true. Classful networks are differentiated by their address range and natural subnet mask." );
+            reportComment[6] = new reportComments(1, 2, 7, "The correct answer is true. 11111111 equals 255 when converted from binary to numerical format." );
+            reportComment[7] = new reportComments(1, 2, 8, "The correct answer is false. The network portion of the address is 192.168.15. Converting the subnet mask to binary can help you in visualizing this." );
+            reportComment[8] = new reportComments(1, 2, 9, "The correct answer is true. 11111111 = 255 and 11100000 = 224." );
+            reportComment[9] = new reportComments(1, 2, 10, "The correct answer is false. Class A: 255.0.0.0. B: 255.255.0.0, C:255.255.255.0." );
+            reportComment[10] = new reportComments(1, 2, 11, "The correct answer is B. Subnetting is primarily used to relieve network congestion and reducing packet collision, as large single networks experience performance issues." );
+            reportComment[11] = new reportComments(1, 2, 12, "The correct answer is A. Class A Networks have a natural or default mask of 255.0.0.0." );
+            reportComment[12] = new reportComments(1, 2, 13, "The correct answer is B. Class B Networks have a natural or default mask of 255.255.0.0." );
+            reportComment[13] = new reportComments(1, 2, 14, "The correct answer is C. Class C Networks have a natural or default mask of 255.255.255.0." );
+            reportComment[14] = new reportComments(1, 2, 15, "The correct answer is A. Try converting the subnet mask to binary and reattempt the question!" );
+        }else if(moduleNo == 2){
+            reportComment[0] = new reportComments(1, 3, 1, "The correct answer is true. It is almost unheard of to use a single network in many settings, as there are performance issues. Subnetting allows for isolated network data transmission and reduced collisions.");
+            reportComment[1] = new reportComments(1, 3, 2, "The correct answer is true. Enterprises will often subnet to divide business functions and improve network performance." );
+            reportComment[2] = new reportComments(1, 3, 3, "The correct answer is true. Subnetting refers to creating subnetworks within a major classful network." );
+            reportComment[3] = new reportComments(1, 3, 4, "The correct answer is true. Additional bits are required to extend a classful network and create subnetworks. This is because these bits are essentially converted from host bits to network bits." );
+            reportComment[4] = new reportComments(1, 3, 5, "The correct answer is false. 2 bits create 4 subnetworks. These are 10, 11, 01, 00 in binary." );
+            reportComment[5] = new reportComments(1, 3, 6, "The correct answer is false. 3 bits create 8 subnetworks." );
+            reportComment[6] = new reportComments(1, 3, 7, "The correct answer is true. 4 bits create 16 subnetworks." );
+            reportComment[7] = new reportComments(1, 3, 8, "The correct answer is false. 5 bits create 32 subnetworks." );
+            reportComment[8] = new reportComments(1, 3, 9, "The correct answer is true. This allows you to figure out the intervals between each network address." );
+            reportComment[9] = new reportComments(1, 3, 10, "The correct answer is true. The question outlines the process of subnetting." );
+            reportComment[10] = new reportComments(1, 3, 11, "The correct answer is C. Try converting the subnet mask to binary and reattempt the question!" );
+            reportComment[11] = new reportComments(1, 3, 12, "The correct answer is B. Try converting the subnet mask to binary, calculate the network address and reattempt the question!" );
+            reportComment[12] = new reportComments(1, 3, 13, "The correct answer is C. Try converting the subnet mask to binary, calculate the network address and reattempt the question!" );
+            reportComment[13] = new reportComments(1, 3, 14, "The correct answer is C. 3 bits creates 8 subnetworks, while 2 bits only create 4." );
+            reportComment[14] = new reportComments(1, 3, 15, "The correct answer is B. Remember that the network and broadcast addresses are not usable!" );
+        }else if(moduleNo == 3){
+            reportComment[0] = new reportComments(1, 4, 1, "The correct answer is false. IPv4 is limited by the number of usable devices.");
+            reportComment[1] = new reportComments(1, 4, 2, "The correct answer is false. IPv4 will likely experience a slow transition to IPv6 due to its prevalence and the existence of NAT." );
+            reportComment[2] = new reportComments(1, 4, 3, "The correct answer is true. IPv4 only supports a maximum of 4.3 billion devices." );
+            reportComment[3] = new reportComments(1, 4, 4, "The correct answer is false. IPv6 addresses are 128-bit." );
+            reportComment[4] = new reportComments(1, 4, 5, "The correct answer is false. IPv6 addresses are much more complex." );
+            reportComment[5] = new reportComments(1, 4, 6, "The correct answer is true. NAT allows devices on a private network to access the internet using a single publicly routable IP address." );
+            reportComment[6] = new reportComments(1, 4, 7, "The correct answer is false. IPv6 allows for 3.4 *10^38 devices." );
+            reportComment[7] = new reportComments(1, 4, 8, "The correct answer is true. It is extremely unlikely (impossible) that there will be more than 3.4 * 10^38 devices in existence." );
+            reportComment[8] = new reportComments(1, 4, 9, "The correct answer is true. The development of technology means that the number of internet-connected devices will only increase." );
+            reportComment[9] = new reportComments(1, 4, 10, "The correct answer is false. They are not directly compatible, but technology exists which allows them to be compatible." );
+            reportComment[10] = new reportComments(1, 4, 11, "The correct answer is A. IPv6 addresses are formatted by groups of 4 hexadecimal digits." );
+            reportComment[11] = new reportComments(1, 4, 12, "The correct answer is C. IPv4 addresses are 32-bit addresses, whereas IPv6 addresses are 128-bit addresses." );
+            reportComment[12] = new reportComments(1, 4, 13, "The correct answer is B. It is inevitable that IPv4 will eventually be phased out." );
+            reportComment[13] = new reportComments(1, 4, 14, "The correct answer is D. IPv6 allows for 340 undecillion addresses." );
+            reportComment[14] = new reportComments(1, 4, 15, "The correct answer is A. IPv4 relies on NAT to provide enough public IP addresses." );
         }
 
         for (int i = 0; i < 10; i++){
