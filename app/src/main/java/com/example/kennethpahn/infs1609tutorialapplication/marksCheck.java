@@ -339,7 +339,7 @@ public class marksCheck extends AppCompatActivity {
         reportComments[] reportComment = new reportComments[15];
         // load fake feedback
         for (int i = 0; i < 15; i++){
-            reportComment[i] = new reportComments(0, 0, 0, "lol u fail " + i);
+            reportComment[i] = new reportComments(0, 0, 0, "Your personalised feedback will display here. " + i);
         }
 
         for (int i = 0; i < 10; i++){
