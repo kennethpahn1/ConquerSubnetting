@@ -3,11 +3,11 @@
 This application is designed to allow users to better understand subnetting through introducing IP addressing, subnet masks, the subnetting process, and IPv6.
 
 ## How do we educate users?
-The way it does this is through original cOnTeNt produced by Chi Yat Jedid Ong, videos sourced from a YouTube API, and testing users using a combination of true/false and multiple choice questions. These responses are then marked and collated into a marking report - where students are provided with an explanation of how they did and refresh themselves on the cOnTeNt until they are comfortable. Users are also provided with retry capability even if they answer a question wrong until they get it right.
+The way it does this is through original cOnTeNt, videos sourced from a YouTube API, and testing users using a combination of true/false and multiple choice questions. These responses are then marked and collated into a marking report - where students are provided with an explanation of how they did and refresh themselves on the cOnTeNt until they are comfortable. Users are also provided with retry capability even if they answer a question wrong until they get it right.
 
 ## So what makes our API usage so impressive?
-### FEEWKA API (Custom API designed by Kenneth Ning Chien Pahn)
-FEEWKA stands for 'For Extended Education with Kenneth's Assistance'. This API was home-grown and hosted on DigitalOcean in Singapore. Using a LAMP (Linux, Apache, MySQL, PHP) stack, this API writes and reads to a MySQL database to enable some unique features including:
+### FEEEWKA API (Custom API)
+FEEEWKA stands for 'For Enhanced Educational Experiences with Kenneth's Assistance'. This API was home-grown and hosted on DigitalOcean in Singapore. Using a LAMP (Linux, Apache, MySQL, PHP) stack, this API writes and reads to a MySQL database to enable some unique features including:
 - Save states: the program uses save.php on the server to save the exact section and subsection the user is up to in each module. The program uses resume.php and getorder.php to retrieve information on where exactly the user should resume from.
 - Online answer saves: using getmcq.php and gettf.php - our API remembers what answers and questions the user entered, and where to pick up where they left off from. The record versions of the former php files are also used to record them on the cloud.
 - Cross-device capability: Rather than saving the answers and progress on device, users can use their accounts on other Android devices. The app relies on login.php to login to their account.
