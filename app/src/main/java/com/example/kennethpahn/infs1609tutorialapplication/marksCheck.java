@@ -220,16 +220,16 @@ public class marksCheck extends AppCompatActivity {
             }
         }
         String gradetf = "FL";
-        if (correcttf / 10 >= 0.5) {
+        if (correcttf / 10.00 >= 0.5) {
             gradetf = "PS";
         }
-        if (correcttf / 10 >= 0.65) {
+        if (correcttf / 10.00 >= 0.65) {
             gradetf = "CR";
         }
-        if (correcttf / 10 >= 0.75) {
+        if (correcttf / 10.00 >= 0.75) {
             gradetf = "DN";
         }
-        if (correcttf / 10 >= 0.85) {
+        if (correcttf / 10.00 >= 0.85) {
             gradetf = "HD";
         }
         marksTxt.append("\nT/F Score: " + correcttf + "/10 " + gradetf);
@@ -272,16 +272,17 @@ public class marksCheck extends AppCompatActivity {
             }
         }
         String grademcq = "FL";
-        if (correctmcq / 5 >= 0.5) {
+        System.out.println("GRADE: " + correctmcq/5.00);
+        if (correctmcq / 5.00 >= 0.5) {
             grademcq = "PS";
         }
-        if (correctmcq / 5 >= 0.65) {
+        if (correctmcq / 5.00 >= 0.65) {
             grademcq = "CR";
         }
-        if (correctmcq / 5 >= 0.75) {
+        if (correctmcq / 5.00 >= 0.75) {
             grademcq = "DN";
         }
-        if (correctmcq / 5 >= 0.85) {
+        if (correctmcq / 5.00 >= 0.85) {
             grademcq = "HD";
         }
         marksTxt.append("\nMCQ Score: " + correctmcq + "/5 " + grademcq);

@@ -24,6 +24,14 @@ public class contentDisp extends AppCompatActivity {
     private TextView moduleContentTxt;
     private int i = 0;
     private int moduleNo;
+    int zid;
+    @Override
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(contentDisp.this, MainActivity.class);
+        a.putExtra("zid", zid);
+        startActivity(a);
+    }
     // this populates the module content so then the user can read what's available in that module.
     private String[] populateModuleContent(int moduleNo){
         String[] moduleContentArray = new String[4];
@@ -124,7 +132,7 @@ public class contentDisp extends AppCompatActivity {
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
-        final int zid = infoPassed.getInt("zid");
+        zid = infoPassed.getInt("zid");
         String moduleName = infoPassed.getString("moduleName");
         i = infoPassed.getInt("order");
         // load UI elements

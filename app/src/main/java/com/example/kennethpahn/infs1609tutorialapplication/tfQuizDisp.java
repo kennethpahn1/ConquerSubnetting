@@ -33,6 +33,12 @@ public class tfQuizDisp extends AppCompatActivity {
     private int mark;
     private int total;
     int zid = 0;
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(tfQuizDisp.this, MainActivity.class);
+        a.putExtra("zid", zid);
+        startActivity(a);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,7 +182,7 @@ public class tfQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + answer;
+                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -207,7 +213,7 @@ public class tfQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + answer;
+                String url = "http://feewka.kennethpahn.info/recordtf.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -237,7 +243,7 @@ public class tfQuizDisp extends AppCompatActivity {
             falseBtn.setText("Next");
             next = true;
         } else if (next == true) {
-            Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
+            Intent a = new Intent(tfQuizDisp.this, mcqQuizDisp.class);
             a.putExtra("moduleNo", moduleNo);
             a.putExtra("zid", zid);
             startActivity(a);

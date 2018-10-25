@@ -28,7 +28,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    @Override
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(MainActivity.this, login.class);
+        startActivity(a);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -256,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
                 b.putExtra("zid", zid);
                 startActivity(b);
                 break;
+                /*
             case 2: Intent c = new Intent(MainActivity.this, multimediaContentDisp.class);
                 c.putExtra("moduleNo", moduleNo);
                 c.putExtra("moduleName", moduleArray[moduleNo].getName());
@@ -265,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                 c.putExtra("lastevent", 123456);
                 System.out.println("zid passed: " + zid);
                 startActivity(c);
-                break;
+                break;*/
             case 3: Intent d = new Intent(MainActivity.this, mcqQuizDisp.class);
                 d.putExtra("moduleNo", moduleNo);
                 d.putExtra("moduleName", moduleArray[moduleNo].getName());

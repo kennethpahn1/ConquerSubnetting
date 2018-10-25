@@ -18,16 +18,22 @@ public class moduleDetail extends YouTubeBaseActivity {
     private TextView moduleDescTxt;
     private Button startBtn;
     private int moduleNo;
-
+    int zid;// = infoPassed.getInt("zid");
     public static final String API_KEY = "AIzaSyCoHPQ88V6gN65zgPNgNoVF6igNAI9kRds";
-
+    @Override
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(moduleDetail.this, MainActivity.class);
+        a.putExtra("zid", zid);
+        startActivity(a);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_detail);
         // get intent and information
         Bundle infoPassed = getIntent().getExtras();
-        final int zid = infoPassed.getInt("zid");
+        zid = infoPassed.getInt("zid");
         moduleNo = infoPassed.getInt("moduleNo");
         String moduleName = infoPassed.getString("moduleName");
         String moduleDesc = infoPassed.getString("moduleDesc");

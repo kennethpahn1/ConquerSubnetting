@@ -33,9 +33,16 @@ public class mcqQuizDisp extends AppCompatActivity {
     private int counter = 0;
     private boolean add = true; // so this prevents retried questions from being taken as correct.
     private boolean next = false;
+    int zid;
     // this is to hold the marks
     private int mark;
     private int total;
+    public void onBackPressed() {
+        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
+        a.putExtra("zid", zid);
+        startActivity(a);
+    }
     // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -53,7 +60,6 @@ public class mcqQuizDisp extends AppCompatActivity {
             mcqQuiz[2] = new mcqQuizContent(1, 1, 2, "13.121.44.1 belongs to which network class?", 0, "A", "B", "C", "D");
             mcqQuiz[3] = new mcqQuizContent(1, 1, 2, "IPv4 addresses are ___-bit addresses.", 1, "16", "32", "64", "128");
             mcqQuiz[4] = new mcqQuizContent(1, 1, 2, "195.113.38.3 belongs to which network class?", 2, "A", "B", "C", "D");
-
         }
         return mcqQuiz;
     }
@@ -68,7 +74,7 @@ public class mcqQuizDisp extends AppCompatActivity {
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 // uses php to register users.
-                String url = "http://feewka.kennethpahn.info/recordmcq.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=1";
+                String url = "http://feewka.kennethpahn.info/recordmcq.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
                 URL url2 = new URL(url);
                 InputStream input = (url2).openStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
@@ -93,6 +99,28 @@ public class mcqQuizDisp extends AppCompatActivity {
             return 1;
         } else {
             if (add == true) {
+                //http://feewka.kennethpahn.info/recordtf.php?zid=5114063&module_id=0&module_question=0&answer=1
+                // Stolen from https://developer.android.com/reference/android/os/StrictMode
+                // Used to allow http to run on main thread for json.
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                // uses php to register users.
+                String url = "http://feewka.kennethpahn.info/recordmcq.php?zid=" + zid + "&module_id=" + moduleNo + "&module_question=" + counter + "&answer=" + user;
+                URL url2 = new URL(url);
+                InputStream input = (url2).openStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+                String status = readAll(rd);
+                // intent to show successful registration.
+                System.out.println("Status: " + status);
+                if (status != ""){
+                    Toast.makeText(getApplicationContext(), "Answer saved.",
+                            Toast.LENGTH_LONG).show();
+                    saveStatus(moduleNo, zid, counter);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Answer save failed.",
+                            Toast.LENGTH_LONG).show();
+                }
                 total++;
             }
             saveStatus(moduleNo, zid, counter);
@@ -109,6 +137,8 @@ public class mcqQuizDisp extends AppCompatActivity {
         } else if (next == true){
             Intent a = new Intent(mcqQuizDisp.this, MainActivity.class);
             a.putExtra("moduleNo", moduleNo);
+            // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+            a.putExtra("zid", zid);
             startActivity(a);
         }
     }
@@ -129,7 +159,7 @@ public class mcqQuizDisp extends AppCompatActivity {
         moduleNo = infoPassed.getInt("moduleNo");
         counter = infoPassed.getInt("order");
         final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
-        final int zid = infoPassed.getInt("zid");
+        zid = infoPassed.getInt("zid");
         // resume
         try {
             mark = getPastAnswers(moduleNo, zid, mcqQuiz);
