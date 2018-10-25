@@ -131,16 +131,17 @@ public class mcqQuizDisp extends AppCompatActivity {
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
+        counter = infoPassed.getInt("order");
         final mcqQuizContent[] mcqQuiz = populateMcqQuiz(moduleNo);
         final int zid = infoPassed.getInt("zid");
-        // resuem
+        // resume
         try {
             mark = getPastAnswers(moduleNo, zid, mcqQuiz);
             if (mark > 0){
                 total = counter;
                 resultTxt.setText("Mark: " + mark + "/" + total);
+                counter++;
             }
-            //total = counter + 1;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -241,7 +242,7 @@ public class mcqQuizDisp extends AppCompatActivity {
     // get past answers
     private int getPastAnswers(int moduleNo, int zid, mcqQuizContent[] mcqQuiz) throws IOException {
         int[] pastanswers = new int[counter];
-        for (int i = 0; i < counter - 1; i++){
+        for (int i = 0; i < counter; i++){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -259,7 +260,7 @@ public class mcqQuizDisp extends AppCompatActivity {
     // check answers and convert to score
     private int getScore(int[] pastanswers, mcqQuizContent[] mcqQuiz){
         int score = 0;
-        for (int i = 0; i < counter - 1; i++){
+        for (int i = 0; i < counter; i++){
             if (mcqQuiz[i].getSolution() == pastanswers[i]){
                 score++;
             }
