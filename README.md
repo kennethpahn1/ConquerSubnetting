@@ -27,8 +27,22 @@ We wanted to add a long response section and the ability for tutors to mark home
 
 ## How to compile this in Android Studio?
 - Use this on an Android device running Oreo.
-- Make sure that your version of Android Studio supports API 28. Please.
+- Make sure that your version of Android Studio supports API 27.
 - Preferably use the Google Pixel 2 x86 emulator running Android 8.
-- Ensure that your phone or emulator has an active internet connection or else it will NOT work as it relies on the FEEWKA API.
+- Ensure that your phone or emulator has an active internet connection or else it will NOT work as it relies on the FEEWKA API which is online.
 
+## Walkthrough
 A walkthrough will be uploaded onto YouTube shortly.
+
+## Resources
+To be honest we probably forgot to reference every single time we used something so we're going to put it all here as well:
+- To enable the back button to be used for different purposes: https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+- Parsing JSON and HTML output from FEEWKA API: https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+- Yes/No Dialog used for logging out, resuming, etc.: https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+- Bug in Yes/No Dialog where it could not get context to show in: https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125
+- Dialog for Yes/No was not showing buttons properly fix: https://stackoverflow.com/questions/27965662/how-can-i-change-default-dialog-button-text-color-in-android-5
+- Bypass requiring AsyncTasks: https://developer.android.com/reference/android/os/StrictMode
+- Learning Switch statements: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+- Making a TextView scrollable: https://stackoverflow.com/questions/23873454/android-textview-scrollable
+- Random number generator used to select a random nice comment for the report card: https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+- Creating the FEEEWKA API: https://www.tutorialspoint.com/android/android_php_mysql.htm
