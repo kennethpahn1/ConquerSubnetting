@@ -71,11 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 0);
                     System.out.println("checkResume output: " + section);
-                    if(section != -1) {
-                        resumeMsg(0, zid, section);
-                    } else{
-                        handoff(0, zid, 0);
-                    }
+                    resumeMsg(0, zid, section);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -88,11 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 1);
                     System.out.println("checkResume output: " + section);
-                    if(section != -1) {
-                        resumeMsg(1, zid, section);
-                    } else{
-                        handoff(1, zid, 0);
-                    }
+                    resumeMsg(0, zid, section);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -104,11 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 2);
                     System.out.println("checkResume output: " + section);
-                    if(section != -1) {
-                        resumeMsg(2, zid, section);
-                    } else{
-                        handoff(2, zid, 0);
-                    }
+                    resumeMsg(0, zid, section);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -120,11 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 3);
                     System.out.println("checkResume output: " + section);
-                    if(section != -1) {
-                        resumeMsg(3, zid, section);
-                    } else{
-                        handoff(3, zid, 0);
-                    }
+                    resumeMsg(0, zid, section);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -137,11 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int section = checkResume(zid, 4);
                     System.out.println("checkResume output: " + section);
-                    if(section != -1) {
-                        resumeMsg(4, zid, section);
-                    } else{
-                        handoff(4, zid, 0);
-                    }
+                    resumeMsg(0, zid, section);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -197,14 +177,38 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Status: " + status);
         return Integer.valueOf(status);
     }
-    private void handoff(int moduleNo, int zid, int section){
+    private int getOrder (int moduleNo, int zid, int section) throws IOException {
+        int order = 0;
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        // uses php to register users.
+        String url = "http://feewka.kennethpahn.info/getorder.php?zid=" + zid + "&module_id=" + moduleNo + "&section=" + section;
+        URL url2 = new URL(url);
+        InputStream input = (url2).openStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+        String status = readAll(rd);
+        order = Integer.valueOf(status);
+        System.out.println("Order grabbed: " + status);
+        return order;
+    }
+    private void handoff(int moduleNo, int zid, int section) throws IOException {
         // let's agree that 0 = from the start, 1 = from the t/f questions, 2 = from the youtube videos, and 3 = from the mcqs.
         // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
         switch (section){
+            case -1: Intent e = new Intent(MainActivity.this, contentDisp.class);
+                e.putExtra("moduleNo", moduleNo);
+                e.putExtra("moduleName", moduleArray[moduleNo].getName());
+                e.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                e.putExtra("order", getOrder(moduleNo, zid, section));
+                e.putExtra("zid", zid);
+                startActivity(e);
+                break;
             case 0: Intent a = new Intent(MainActivity.this, contentDisp.class);
                 a.putExtra("moduleNo", moduleNo);
                 a.putExtra("moduleName", moduleArray[moduleNo].getName());
                 a.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                a.putExtra("order", getOrder(moduleNo, zid, section));
                 a.putExtra("zid", zid);
                 startActivity(a);
             break;
@@ -212,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 b.putExtra("moduleNo", moduleNo);
                 b.putExtra("moduleName", moduleArray[moduleNo].getName());
                 b.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                b.putExtra("order", getOrder(moduleNo, zid, section));
                 b.putExtra("zid", zid);
                 startActivity(b);
                 break;
@@ -219,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 c.putExtra("moduleNo", moduleNo);
                 c.putExtra("moduleName", moduleArray[moduleNo].getName());
                 c.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                c.putExtra("order", getOrder(moduleNo, zid, section));
                 c.putExtra("zid", zid);
                 startActivity(c);
                 break;
@@ -226,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 d.putExtra("moduleNo", moduleNo);
                 d.putExtra("moduleName", moduleArray[moduleNo].getName());
                 d.putExtra("moduleDesc", moduleArray[moduleNo].getDescription());
+                d.putExtra("order", getOrder(moduleNo, zid, section));
                 d.putExtra("zid", zid);
                 startActivity(d);
                 break;
@@ -241,14 +248,22 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // get the thing to find out where to resume at...
-                handoff(moduleNo, zid, section);
+                try {
+                    handoff(moduleNo, zid, section);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 dialog.dismiss();
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                handoff(moduleNo, zid, 0);
+                try {
+                    handoff(moduleNo, zid, 0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 dialog.dismiss();
             }
         });

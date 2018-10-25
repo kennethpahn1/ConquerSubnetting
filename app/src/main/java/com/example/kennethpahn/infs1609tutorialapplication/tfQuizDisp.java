@@ -45,6 +45,7 @@ public class tfQuizDisp extends AppCompatActivity {
         Bundle infoPassed = getIntent().getExtras();
         final int zid = infoPassed.getInt("zid");
         moduleNo = infoPassed.getInt("moduleNo");
+        int order = infoPassed.getInt("order");
         // now load the correct questions
         final tfQuizContent[] tfQuiz = populateTfQuiz(moduleNo);
         // initialise with the first question

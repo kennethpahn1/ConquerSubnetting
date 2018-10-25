@@ -32,6 +32,10 @@ public class contentDisp extends AppCompatActivity {
         }
         return moduleContentArray;
     }
+    // save status every time
+    private void saveStatus(int moduleNo, int zid, int order){
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,7 @@ public class contentDisp extends AppCompatActivity {
         moduleNo = infoPassed.getInt("moduleNo");
         final int zid = infoPassed.getInt("zid");
         String moduleName = infoPassed.getString("moduleName");
+        i = infoPassed.getInt("order");
         // load UI elements
         nextBtn = (Button) findViewById(R.id.nextBtn);
         prevBtn = (Button) findViewById(R.id.prevBtn);
@@ -62,6 +67,7 @@ public class contentDisp extends AppCompatActivity {
                     } else{
                         i++;
                         moduleContentTxt.setText(moduleContentArray[i]);
+                        saveStatus(moduleNo, zid, i);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -84,6 +90,7 @@ public class contentDisp extends AppCompatActivity {
                     } else{
                         i--;
                         moduleContentTxt.setText(moduleContentArray[i]);
+                        saveStatus(moduleNo, zid, i);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
