@@ -237,7 +237,7 @@ public class tfQuizDisp extends AppCompatActivity {
             falseBtn.setText("Next");
             next = true;
         } else if (next == true) {
-            Intent a = new Intent(tfQuizDisp.this, multimediaContentDisp.class);
+            Intent a = new Intent(tfQuizDisp.this, mcqQuizDisp.class);
             a.putExtra("moduleNo", moduleNo);
             a.putExtra("zid", zid);
             startActivity(a);

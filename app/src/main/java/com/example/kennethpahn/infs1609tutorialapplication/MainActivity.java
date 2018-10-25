@@ -256,6 +256,7 @@ public class MainActivity extends AppCompatActivity {
                 b.putExtra("zid", zid);
                 startActivity(b);
                 break;
+                /*
             case 2: Intent c = new Intent(MainActivity.this, multimediaContentDisp.class);
                 c.putExtra("moduleNo", moduleNo);
                 c.putExtra("moduleName", moduleArray[moduleNo].getName());
@@ -265,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 c.putExtra("lastevent", 123456);
                 System.out.println("zid passed: " + zid);
                 startActivity(c);
-                break;
+                break;*/
             case 3: Intent d = new Intent(MainActivity.this, mcqQuizDisp.class);
                 d.putExtra("moduleNo", moduleNo);
                 d.putExtra("moduleName", moduleArray[moduleNo].getName());
