@@ -50,7 +50,7 @@ To be honest we probably forgot to reference every single time we needed to lear
 - Random number generator used to select a random nice comment for the report card: https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
 - Creating the FEEEWKA API: https://www.tutorialspoint.com/android/android_php_mysql.htm
 - Force Portrait: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
-### cOnTeNt Resources
+### Content Resources
 Cisco 2016, IP Addressing and Subnetting for New Users, accessed 20th October 2018, 
 <https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html>
 
