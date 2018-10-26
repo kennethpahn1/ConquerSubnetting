@@ -1,6 +1,7 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         registerBtn = (Button) findViewById(R.id.registerBtn);
         zIDinput = (EditText) findViewById(R.id.zIDinput);
         zPassinput = (EditText) findViewById(R.id.zPassinput);

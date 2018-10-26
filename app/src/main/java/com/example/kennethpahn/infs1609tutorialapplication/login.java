@@ -1,6 +1,7 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // stolen from https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         zIDinput = (EditText) findViewById(R.id.zIDinput);
         zPassinput = (EditText) findViewById(R.id.zPassinput);
