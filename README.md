@@ -59,3 +59,12 @@ TechTarget 2005, Subnetting to increase performance, accessed 20th October 2018,
 
 Shaw, K 2018, What is IPv6, and why aren’t we there yet?, accessed 20th October 2018,
 <https://www.networkworld.com/article/3254575/lan-wan/what-is-ipv6-and-why-aren-t-we-there-yet.html>
+
+Juniper 2018, Understanding IPv6 Address Space, Addressing, Address Format, and Address Types, accessed 21st October 2018,
+<https://www.juniper.net/documentation/en_US/junos/topics/concept/ipv6-flow-ipv6-address-types.html>
+
+Cisco 2014, Network Address Translation (NAT) FAQ, accessed 21st October 2018,
+<https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html>
+
+Daou, I n.d., Understanding Classful Network Mask, accessed 21st October 2018,
+<https://www.ccnahub.com/ip-fundamentals/understanding-classful-network-mask/>
