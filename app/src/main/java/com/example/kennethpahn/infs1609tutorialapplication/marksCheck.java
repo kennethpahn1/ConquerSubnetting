@@ -291,6 +291,7 @@ public class marksCheck extends AppCompatActivity {
             e.printStackTrace();
         }
         int correctmcq = 0;
+        marksTxt.append("\n----------------------");
         marksTxt.append("\n\nMCQ Results\n\n");
         marksTxt.append("Q ANS SLN\n");
         for (int i = 0; i < counter; i++){
@@ -338,6 +339,7 @@ public class marksCheck extends AppCompatActivity {
             grademcq = "HD";
         }
         marksTxt.append("\nMCQ Score: " + correctmcq + "/5 " + grademcq);
+        marksTxt.append("\n----------------------");
         return correct;
     }
     // generate a report. done so with pre-configured feedbacks and then creates a report accordingly.
@@ -412,7 +414,7 @@ public class marksCheck extends AppCompatActivity {
         }
 
         for (int i = 0; i < 10; i++){
-            reportString = reportString + "T/F Question " + i + ": ";
+            reportString = reportString + "T/F Q " + i + ": ";
             if (storage[i] == true){
                 // stolen from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
                 Random rn = new Random();
@@ -432,11 +434,11 @@ public class marksCheck extends AppCompatActivity {
             } else if (storage[i] == false){
                 reportString = reportString + reportComment[i].getComment();
             }
-            reportString = reportString + "\n";
+            reportString = reportString + "\n\n";
         }
-
+        reportString = reportString + ("\n----------------------\n");
         for (int i = 10; i < 15; i++){
-            reportString = reportString + "MCQ Question " + i + ": ";
+            reportString = reportString + "MCQ Q " + (i - 10) + ": ";
             if (storage[i] == true){
                 // stolen from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
                 Random rn = new Random();
@@ -456,7 +458,7 @@ public class marksCheck extends AppCompatActivity {
             } else if (storage[i] == false){
                 reportString = reportString + reportComment[i].getComment();
             }
-            reportString = reportString + "\n";
+            reportString = reportString + "\n\n";
         }
         return reportString;
     }
