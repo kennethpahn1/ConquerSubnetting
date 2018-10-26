@@ -49,3 +49,13 @@ To be honest we probably forgot to reference every single time we used something
 - Random number generator used to select a random nice comment for the report card: https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
 - Creating the FEEEWKA API: https://www.tutorialspoint.com/android/android_php_mysql.htm
 - Force Portrait: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
+
+## CONTENT REFERENCES
+Cisco 2016, IP Addressing and Subnetting for New Users, accessed 20th October 2018, 
+<https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html>
+
+TechTarget 2005, Subnetting to increase performance, accessed 20th October 2018,
+<https://searchnetworking.techtarget.com/feature/Subnetting-to-increase-performance>
+
+Shaw, K 2018, What is IPv6, and why aren’t we there yet?, accessed 20th October 2018,
+<https://www.networkworld.com/article/3254575/lan-wan/what-is-ipv6-and-why-aren-t-we-there-yet.html>
