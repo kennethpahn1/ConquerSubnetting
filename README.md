@@ -32,7 +32,9 @@ We wanted to add a long response section and the ability for tutors to mark home
 - Ensure that your phone or emulator has an active internet connection or else it will NOT work as it relies on the FEEWKA API which is online.
 
 ## Walkthrough
-A walkthrough will be uploaded onto YouTube shortly.
+In the case the application does not compile properly or does not function as expected on your build, or you need some extra context - feel free to watch our walkthrough below.
+
+https://www.youtube.com/watch?v=CJUwU1WD278
 
 ## Resources
 To be honest we probably forgot to reference every single time we used something so we're going to put it all here as well:
@@ -46,3 +48,4 @@ To be honest we probably forgot to reference every single time we used something
 - Making a TextView scrollable: https://stackoverflow.com/questions/23873454/android-textview-scrollable
 - Random number generator used to select a random nice comment for the report card: https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
 - Creating the FEEEWKA API: https://www.tutorialspoint.com/android/android_php_mysql.htm
+- Force Portrait: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
