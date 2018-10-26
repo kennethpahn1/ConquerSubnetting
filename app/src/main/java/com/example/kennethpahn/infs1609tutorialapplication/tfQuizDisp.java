@@ -36,7 +36,7 @@ public class tfQuizDisp extends AppCompatActivity {
     int zid = 0;
     // move back to main activity.
     public void onBackPressed() {
-        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        // sourced from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(tfQuizDisp.this, MainActivity.class);
         a.putExtra("zid", zid);
         startActivity(a);
@@ -123,7 +123,7 @@ public class tfQuizDisp extends AppCompatActivity {
         });
     }
     // parsing...
-    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // sourced from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -205,7 +205,7 @@ public class tfQuizDisp extends AppCompatActivity {
         if (user == answer) {
             if (add == true) {
                 //http://feewka.kennethpahn.info/recordtf.php?zid=5114063&module_id=0&module_question=0&answer=1
-                // Stolen from https://developer.android.com/reference/android/os/StrictMode
+                // sourced from https://developer.android.com/reference/android/os/StrictMode
                 // Used to allow http to run on main thread for json.
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                         .permitAll().build();
@@ -236,7 +236,7 @@ public class tfQuizDisp extends AppCompatActivity {
         } else {
             if (add == true) {
                 //http://feewka.kennethpahn.info/recordtf.php?zid=5114063&module_id=0&module_question=0&answer=1
-                // Stolen from https://developer.android.com/reference/android/os/StrictMode
+                // sourced from https://developer.android.com/reference/android/os/StrictMode
                 // Used to allow http to run on main thread for json.
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                         .permitAll().build();

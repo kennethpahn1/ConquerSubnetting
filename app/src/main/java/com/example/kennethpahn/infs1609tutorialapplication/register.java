@@ -50,7 +50,7 @@ public class register extends AppCompatActivity {
             public void onClick(View view){
                 try {
                     //register test
-                    // Stolen from https://developer.android.com/reference/android/os/StrictMode
+                    // sourced from https://developer.android.com/reference/android/os/StrictMode
                     // Used to allow http to run on main thread for json.
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                             .permitAll().build();

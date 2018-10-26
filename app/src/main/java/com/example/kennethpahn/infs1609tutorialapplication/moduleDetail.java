@@ -25,7 +25,7 @@ public class moduleDetail extends YouTubeBaseActivity{
     @Override
     // bring it back to main activity on back.
     public void onBackPressed() {
-        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
+        // sourced from https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(moduleDetail.this, MainActivity.class);
         a.putExtra("zid", zid);
         startActivity(a);

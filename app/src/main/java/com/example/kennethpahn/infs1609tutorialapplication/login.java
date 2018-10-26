@@ -28,7 +28,7 @@ public class login extends AppCompatActivity {
     private EditText zIDinput;
     private EditText zPassinput;
     private Button registerBtn;
-    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // sourced from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     // this is used to parse the html stuff into text the program can read.
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -47,7 +47,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // stolen from https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
+        // sourced from https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         zIDinput = (EditText) findViewById(R.id.zIDinput);

@@ -34,7 +34,7 @@ public class marksCheck extends AppCompatActivity {
         marksTxt = (TextView) findViewById(R.id.marksTxt);
         Bundle infoPassed = getIntent().getExtras();
         final int zid = infoPassed.getInt("zid");
-        // stolen from https://stackoverflow.com/questions/23873454/android-textview-scrollable
+        // sourced from https://stackoverflow.com/questions/23873454/android-textview-scrollable
         marksTxt.setMovementMethod(new ScrollingMovementMethod());
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -167,7 +167,7 @@ public class marksCheck extends AppCompatActivity {
 
         return mcqQuiz;
     }
-    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // sourced from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     // again - to get our api's response parsed...
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -416,10 +416,10 @@ public class marksCheck extends AppCompatActivity {
         for (int i = 0; i < 10; i++){
             reportString = reportString + "T/F Q " + i + ": ";
             if (storage[i] == true){
-                // stolen from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+                // sourced from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
                 Random rn = new Random();
                 int random = rn.nextInt(3 - 0 + 1);
-                // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+                // sourced from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
                 switch (random){
                     case 0: reportString = reportString + "You got this one right. Great job!";
                     break;
@@ -440,10 +440,10 @@ public class marksCheck extends AppCompatActivity {
         for (int i = 10; i < 15; i++){
             reportString = reportString + "MCQ Q " + (i - 10) + ": ";
             if (storage[i] == true){
-                // stolen from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+                // sourced from https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
                 Random rn = new Random();
                 int random = rn.nextInt(3 - 0 + 1);
-                // stolen from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+                // sourced from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
                 switch (random){
                     case 0: reportString = reportString + "You got this one right. Great job!";
                         break;

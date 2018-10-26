@@ -31,7 +31,7 @@ public class contentDisp extends AppCompatActivity {
     // be completed.
     @Override
     public void onBackPressed() {
-        // stolen from https://stackoverflow.com/questions/3141996/android-how-to-override-the-
+        // sourced from https://stackoverflow.com/questions/3141996/android-how-to-override-the-
         // back-button-so-it-doesnt-finish-my-activity
         Intent a = new Intent(contentDisp.this, MainActivity.class);
         a.putExtra("zid", zid);
@@ -160,7 +160,7 @@ public class contentDisp extends AppCompatActivity {
         }
         return moduleContentArray;
     }
-    // stolen from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+    // sourced from https://mobilesiri.com/json-parsing-in-android-using-android-studio/
     // this function is used to parse the HTML output that is provided by our custom API.
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
