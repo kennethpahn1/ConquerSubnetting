@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
 
         alert.show();
-
     }
     // the usual getting the UI and stuff to run...
     @Override

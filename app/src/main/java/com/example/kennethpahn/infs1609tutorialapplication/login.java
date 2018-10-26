@@ -1,8 +1,10 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +37,10 @@ public class login extends AppCompatActivity {
             sb.append((char) cp);
         }
         return sb.toString();
+    }
+    @Override
+    public void onBackPressed() {
+        
     }
     // usual setting up buttons and stuff
     @Override
