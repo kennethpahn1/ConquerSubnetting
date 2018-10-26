@@ -191,7 +191,7 @@ public class contentDisp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_disp);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");

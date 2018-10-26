@@ -37,7 +37,7 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         registerBtn = (Button) findViewById(R.id.registerBtn);
         zIDinput = (EditText) findViewById(R.id.zIDinput);
         zPassinput = (EditText) findViewById(R.id.zPassinput);

@@ -42,7 +42,7 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // stolen from https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         zIDinput = (EditText) findViewById(R.id.zIDinput);
         zPassinput = (EditText) findViewById(R.id.zPassinput);

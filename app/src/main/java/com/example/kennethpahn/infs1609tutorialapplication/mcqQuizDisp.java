@@ -181,7 +181,7 @@ public class mcqQuizDisp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mcq_quiz_disp);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         questionTxt = (TextView) findViewById(R.id.questionTxt);
         aOption = (RadioButton) findViewById(R.id.aOption);
         bOption = (RadioButton) findViewById(R.id.bOption);

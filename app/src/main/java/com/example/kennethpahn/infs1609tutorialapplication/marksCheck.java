@@ -29,7 +29,7 @@ public class marksCheck extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marks_check);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         marksTxt = (TextView) findViewById(R.id.marksTxt);
         Bundle infoPassed = getIntent().getExtras();

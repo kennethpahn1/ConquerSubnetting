@@ -45,7 +45,7 @@ public class tfQuizDisp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tf_quiz_disp);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // link UI
         questionTxt = (TextView) findViewById(R.id.questionTxt);
         trueBtn = (Button) findViewById(R.id.trueBtn);
