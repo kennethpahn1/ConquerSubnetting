@@ -48,3 +48,4 @@ To be honest we probably forgot to reference every single time we used something
 - Making a TextView scrollable: https://stackoverflow.com/questions/23873454/android-textview-scrollable
 - Random number generator used to select a random nice comment for the report card: https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
 - Creating the FEEEWKA API: https://www.tutorialspoint.com/android/android_php_mysql.htm
+- Force Portrait: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
