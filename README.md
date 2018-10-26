@@ -37,6 +37,7 @@ In the case the application does not compile properly or does not function as ex
 https://www.youtube.com/watch?v=CJUwU1WD278
 
 ## Resources
+### Coding Resources
 To be honest we probably forgot to reference every single time we needed to learn something from somewhere so we're going to put it all here as well:
 - To enable the back button to be used for different purposes: https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
 - Parsing JSON and HTML output from FEEWKA API: https://mobilesiri.com/json-parsing-in-android-using-android-studio/ & https://stackoverflow.com/questions/9605913/how-do-i-parse-json-in-android
@@ -49,8 +50,7 @@ To be honest we probably forgot to reference every single time we needed to lear
 - Random number generator used to select a random nice comment for the report card: https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
 - Creating the FEEEWKA API: https://www.tutorialspoint.com/android/android_php_mysql.htm
 - Force Portrait: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
-
-## CONTENT REFERENCES
+### cOnTeNt Resources
 Cisco 2016, IP Addressing and Subnetting for New Users, accessed 20th October 2018, 
 <https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html>
 
