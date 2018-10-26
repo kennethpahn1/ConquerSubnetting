@@ -37,9 +37,9 @@ In the case the application does not compile properly or does not function as ex
 https://www.youtube.com/watch?v=CJUwU1WD278
 
 ## Resources
-To be honest we probably forgot to reference every single time we used something so we're going to put it all here as well:
+To be honest we probably forgot to reference every single time we needed to learn something from somewhere so we're going to put it all here as well:
 - To enable the back button to be used for different purposes: https://stackoverflow.com/questions/3141996/android-how-to-override-the-back-button-so-it-doesnt-finish-my-activity
-- Parsing JSON and HTML output from FEEWKA API: https://mobilesiri.com/json-parsing-in-android-using-android-studio/
+- Parsing JSON and HTML output from FEEWKA API: https://mobilesiri.com/json-parsing-in-android-using-android-studio/ & https://stackoverflow.com/questions/9605913/how-do-i-parse-json-in-android
 - Yes/No Dialog used for logging out, resuming, etc.: https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
 - Bug in Yes/No Dialog where it could not get context to show in: https://stackoverflow.com/questions/5447092/get-context-inside-onclickdialoginterface-v-int-buttonid#5447125
 - Dialog for Yes/No was not showing buttons properly fix: https://stackoverflow.com/questions/27965662/how-can-i-change-default-dialog-button-text-color-in-android-5
