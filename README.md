@@ -33,6 +33,7 @@ We wanted to add a long response section and the ability for tutors to mark home
 
 ## Walkthrough
 In the case the application does not compile properly or does not function as expected on your build, or you need some extra context - feel free to watch our walkthrough below.
+
 https://www.youtube.com/watch?v=CJUwU1WD278
 
 ## Resources
