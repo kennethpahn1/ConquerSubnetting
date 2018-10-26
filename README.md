@@ -3,7 +3,7 @@
 This application is designed to allow users to better understand subnetting through introducing IP addressing, subnet masks, the subnetting process, and IPv6.
 
 ## How do we educate users?
-The way it does this is through original cOnTeNt, videos sourced from a YouTube API, and testing users using a combination of true/false and multiple choice questions. These responses are then marked and collated into a marking report - where students are provided with an explanation of how they did and refresh themselves on the cOnTeNt until they are comfortable. Users are also provided with retry capability even if they answer a question wrong until they get it right.
+The way it does this is through original content, videos sourced from a YouTube API, and testing users using a combination of true/false and multiple choice questions. These responses are then marked and collated into a marking report - where students are provided with an explanation of how they did and refresh themselves on the content until they are comfortable. Users are also provided with retry capability even if they answer a question wrong until they get it right.
 
 ## So what makes our API usage so impressive?
 ### FEEEWKA API (Custom API)
@@ -12,8 +12,10 @@ FEEEWKA stands for 'For Enhanced Educational Experiences with Kenneth's Assistan
 - Online answer saves: using getmcq.php and gettf.php - our API remembers what answers and questions the user entered, and where to pick up where they left off from. The record versions of the former php files are also used to record them on the cloud.
 - Cross-device capability: Rather than saving the answers and progress on device, users can use their accounts on other Android devices. The app relies on login.php to login to their account.
 - One device, multiple users: Users can share their device as they have the ability to register. The app relies on resume.php to do so.
+
+Refer to the api folder to see the source code for it.
 ### YouTube API
-Our app uses the YouTube API to show a playlist of videos that will help add additional context to the module text cOnTeNt provided.
+Our app uses the YouTube API to show a playlist of videos that will help add additional context to the module text content provided.
 
 ## How is our UI/UX amazing?
 Our UI is extremely simple to use. How?
@@ -23,7 +25,7 @@ Our UI is extremely simple to use. How?
 - Responsive design: The design uses constraints to ensure that you can use your device - your way, across any Android device.
 
 ## Potential
-We wanted to add a long response section and the ability for tutors to mark homework (long response answers only) using the FEEWKA API, however, we did not have enough time as we were focusing on trying to push cOnTeNt into the app.
+We wanted to add a long response section and the ability for tutors to mark homework (long response answers only) using the FEEWKA API, however, we did not have enough time as we were focusing on trying to push content into the app.
 
 ## How to compile this in Android Studio?
 - Use this on an Android device running Oreo.
