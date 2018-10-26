@@ -32,7 +32,8 @@ We wanted to add a long response section and the ability for tutors to mark home
 - Ensure that your phone or emulator has an active internet connection or else it will NOT work as it relies on the FEEWKA API which is online.
 
 ## Walkthrough
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CJUwU1WD278" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+In the case the application does not compile properly or does not function as expected on your build, or you need some extra context - feel free to watch our walkthrough below.
+https://www.youtube.com/watch?v=CJUwU1WD278
 
 ## Resources
 To be honest we probably forgot to reference every single time we used something so we're going to put it all here as well:
