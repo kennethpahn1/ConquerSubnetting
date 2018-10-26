@@ -2,6 +2,7 @@ package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -180,6 +181,7 @@ public class mcqQuizDisp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mcq_quiz_disp);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         questionTxt = (TextView) findViewById(R.id.questionTxt);
         aOption = (RadioButton) findViewById(R.id.aOption);
         bOption = (RadioButton) findViewById(R.id.bOption);

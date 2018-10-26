@@ -1,6 +1,7 @@
 package com.example.kennethpahn.infs1609tutorialapplication;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -190,6 +191,7 @@ public class contentDisp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_disp);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         // get intent details
         Bundle infoPassed = getIntent().getExtras();
         moduleNo = infoPassed.getInt("moduleNo");
